@@ -229,7 +229,7 @@ export default function EmsForm() {
 
           <fieldset><legend>4. Firmas online</legend><div className="signature-grid"><SignaturePad label="Firma de la anamnesis" onChange={setAnamnesisSignature} /><SignaturePad label="Firma del consentimiento informado" onChange={setConsentSignature} /></div></fieldset>
 
-          <div className="submission-box"><div><h2>Enviar documentos firmados</h2><p>Se generará un único PDF con la anamnesis, el consentimiento y la información adicional, todo cumplimentado y firmado, y se enviará de forma segura a nuestro equipo.</p><p className="test-mode">Destino: <strong>nutrialex.27@gmail.com</strong>. No almacenamos una copia adicional en esta web.</p></div><button type="submit" disabled={busy}>{busy ? "Enviando…" : "Firmar y enviar formulario"} <Send size={19} /></button></div>
+          <div className="submission-box"><div><h2>Enviar documentos firmados</h2><p>Se generará un único PDF con la anamnesis, el consentimiento y la información adicional, todo cumplimentado y firmado, y se enviará de forma segura a nuestro equipo.</p><p className="test-mode">Destino: <strong>nutri.bea.md@gmail.com</strong>. No almacenamos una copia adicional en esta web.</p></div><button type="submit" disabled={busy}>{busy ? "Enviando…" : "Firmar y enviar formulario"} <Send size={19} /></button></div>
           {status && <p className="form-status" role="status"><Check size={18} /> {status}</p>}
         </form>
       </div>
