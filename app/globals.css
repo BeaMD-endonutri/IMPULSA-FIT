@@ -57,7 +57,7 @@ nav a:hover { color: white; }
 .hero-points span { display: inline-flex; align-items: center; gap: 8px; }
 .hero-points svg { color: #28dff6; }
 
-.intro, .profiles, .contact { padding-block: 110px; }
+.intro, .profiles, .facilities, .contact { padding-block: 110px; }
 .section-kicker { letter-spacing: .13em; }
 .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 20px; }
 h2 { font-size: clamp(2.7rem, 5.6vw, 5.1rem); }
@@ -88,7 +88,7 @@ h2 { font-size: clamp(2.7rem, 5.6vw, 5.1rem); }
 .truth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 20px; background: #24313a; }
 .truth-grid > div { display: flex; gap: 12px; padding: 20px 24px; background: #0b1218; }
 .truth-grid svg { flex: none; color: #28dff6; }
-.truth-grid div:nth-child(even) svg { color: #78909a; }
+.truth-grid svg { color: #28dff6; }
 .truth-grid p { margin: 0; color: #9aabb2; line-height: 1.55; }
 .truth-grid strong { color: white; }
 
@@ -100,6 +100,13 @@ h2 { font-size: clamp(2.7rem, 5.6vw, 5.1rem); }
 .profile-list h3 { margin: 0; text-transform: uppercase; font: 900 1.2rem "Arial Narrow", Arial, sans-serif; }
 .profile-list p { color: #91a3ab; line-height: 1.55; }
 .profile-list svg { color: #28dff6; }
+
+.facilities { background: radial-gradient(circle at 15% 10%, rgb(40 223 246 / 7%), transparent 30%), #080e13; border-top: 1px solid #1a2730; }
+.facility-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
+.facility-placeholder { min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 30px; border: 1px solid #29404a; background: linear-gradient(145deg, #0d1a21, #091016); color: #7f949d; text-align: center; }
+.facility-placeholder svg { color: #28dff6; }
+.facility-placeholder strong { color: #eaf5f7; text-transform: uppercase; font: 900 1.05rem "Arial Narrow", Arial, sans-serif; letter-spacing: .04em; }
+.facility-placeholder span { font-size: .9rem; }
 
 .safety { padding-block: 100px; background: linear-gradient(120deg, #092028, #081117 62%); border-block: 1px solid #21414a; }
 .safety-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -143,7 +150,8 @@ footer { border-top: 1px solid #1d2931; background: #05080c; }
   .hero-copy { max-width: 520px; }
   .intro-grid, .section-heading, .section-heading.compact, .safety-grid, .contact-card { grid-template-columns: 1fr; gap: 20px; }
   .process { grid-template-columns: 1fr 1fr; } .process > div:nth-child(2) { border-right: 0; }
-  .evidence-grid { grid-template-columns: 1fr; } .evidence-card { min-height: auto; } .evidence-card h3 { margin-top: 26px; }
+  .evidence-grid, .facility-gallery { grid-template-columns: 1fr; } .evidence-card { min-height: auto; } .evidence-card h3 { margin-top: 26px; }
+  .facility-placeholder { min-height: 220px; }
   .profile-list article { grid-template-columns: 52px 210px 1fr 25px; }
   .contact-copy, .preview-form { padding: 38px; }
 }
@@ -152,7 +160,7 @@ footer { border-top: 1px solid #1d2931; background: #05080c; }
   .hero { min-height: 760px; align-items: flex-end; padding-bottom: 56px; } .hero-content { padding-top: 140px; }
   .hero-media { background-position: 67% center; opacity: .62; } .hero-shade { background: linear-gradient(0deg, #070b10 7%, rgb(5 9 15 / 75%) 58%, rgb(5 9 15 / 28%)); }
   .hero h1 { font-size: clamp(3rem, 15vw, 4.4rem); } .hero-points { gap: 12px 20px; }
-  .intro, .profiles, .contact, .science, .safety { padding-block: 76px; } h2 { font-size: 2.8rem; }
+  .intro, .profiles, .facilities, .contact, .science, .safety { padding-block: 76px; } h2 { font-size: 2.8rem; }
   .process { grid-template-columns: 1fr; } .process > div { border-right: 0; border-bottom: 1px solid #24313a; }
   .time-fact { grid-template-columns: 1fr; padding: 28px; gap: 28px; } .time-number { align-items: flex-start; border-right: 0; border-bottom: 1px solid #29404a; padding-bottom: 25px; }
   .time-number span { font-size: 5rem; } .truth-grid { grid-template-columns: 1fr; }
