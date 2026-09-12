@@ -36,7 +36,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="inicio">
-        <div className="hero-media" aria-hidden="true" /><div className="hero-shade" aria-hidden="true" />
+        <div className="hero-media" style={{ backgroundImage: "url('hero-ems-power.webp')" }} aria-hidden="true" /><div className="hero-shade" aria-hidden="true" /><div className="hero-grid" aria-hidden="true" />
         <div className="hero-content wrap">
           <p className="eyebrow"><span /> EMS PERFORMANCE STUDIO · HUELVA</p>
           <h1>Entrena todo tu cuerpo.<br /><em>Impulsa tu tiempo.</em></h1>
@@ -47,6 +47,21 @@ export default function Home() {
           </div>
           <div className="hero-points" aria-label="Características principales">
             <span><UserRoundCheck size={18} /> Supervisión cercana</span><span><TimerReset size={18} /> Unos 40 minutos</span><span><ShieldCheck size={18} /> Valoración previa</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="power-showcase" aria-label="Entrenamiento EMS supervisado">
+        <div className="wrap power-showcase-grid">
+          <div className="power-copy">
+            <div className="section-kicker"><Bolt size={18} /> UNA EXPERIENCIA DIFERENTE</div>
+            <h2>Tecnología que se adapta.<br /><span>Entrenamiento que se siente.</span></h2>
+            <p>Antes de empezar ajustamos el chaleco y cada grupo muscular. Durante la sesión, el monitor guía el movimiento, regula la intensidad y te acompaña en cada repetición.</p>
+            <div className="power-stat"><strong>100%</strong><span>guiado, personalizado<br />y en movimiento</span></div>
+          </div>
+          <div className="power-images">
+            <figure className="power-image power-image-main"><img src="ems-setup.webp" alt="Monitor ajustando un chaleco EMS antes del entrenamiento" /><figcaption><span>01</span> Ajuste profesional</figcaption></figure>
+            <figure className="power-image power-image-float"><img src="ems-training.webp" alt="Mujer entrenando con chaleco EMS bajo supervisión profesional" /><figcaption><span>02</span> Movimiento activo</figcaption></figure>
           </div>
         </div>
       </section>
