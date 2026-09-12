@@ -165,7 +165,7 @@ export default function EmsForm() {
 
   return (
     <main className="form-page">
-      <header className="form-header"><a href="../"><ArrowLeft size={19} /> Volver a IMPULSA FIT</a><span><FileSignature size={20} /> Valoración y consentimiento EMS</span></header>
+      <header className="form-header"><a href="./"><ArrowLeft size={19} /> Volver a IMPULSA FIT</a><span><FileSignature size={20} /> Valoración y consentimiento EMS</span></header>
       <div className="form-shell">
         <div className="form-intro"><p className="section-kicker"><ShieldCheck size={18} /> PROCESO SEGURO Y GUIADO</p><h1>Prepárate para<br /><em>tu primera sesión.</em></h1><p>Completa la anamnesis, revisa el consentimiento y firma ambos documentos. Recibirás un único PDF con toda la información.</p><div className="form-steps"><span><b>1</b> Datos</span><span><b>2</b> Anamnesis</span><span><b>3</b> Consentimiento</span><span><b>4</b> Firmas</span></div></div>
         <form className="ems-form" onSubmit={submit}>
