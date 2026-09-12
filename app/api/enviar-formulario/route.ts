@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: "IMPULSA FIT <onboarding@resend.dev>",
-        to: ["nutrialex.27@gmail.com"],
+        to: ["nutri.bea.md@gmail.com"],
         reply_to: email,
         subject: `Nuevo formulario EMS firmado — ${fullName}`,
         text: `Se ha recibido un nuevo formulario EMS cumplimentado y firmado.\n\nNombre: ${fullName}\nCorreo: ${email}\nTeléfono: ${phone || "No indicado"}\nOtra información: ${otherInfo || "No indicada"}\n\nEl documento conjunto se adjunta en PDF.`,
