@@ -137,16 +137,16 @@ export default function Home() {
           <div className="contact-copy">
             <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
             <h2>¿Te gustaría<br /><span>probar una sesión?</span></h2>
-            <p>Muy pronto podrás completar online el formulario de valoración y el consentimiento informado, firmarlos desde el móvil y enviarlos directamente a nuestro equipo.</p>
-            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas, firmas ambos documentos y recibimos toda la información para preparar tu primera sesión.</span></div>
+            <p>Completa online el formulario de valoración y el consentimiento informado, firma ambos desde el móvil y genera un único PDF con toda la información.</p>
+            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas y firmas los dos documentos. Durante la prueba podrás descargar el PDF final antes de activar el envío automático.</span></div>
           </div>
-          <form className="preview-form" aria-label="Vista previa del futuro formulario">
+          <div className="preview-form" aria-label="Acceso al formulario online">
             <label>Nombre y apellidos<input type="text" placeholder="Tu nombre" disabled /></label>
             <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
             <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
-            <button type="button" disabled>Formulario y firma disponibles próximamente <ArrowRight size={18} /></button>
-            <small>No se envía ni almacena información en esta versión.</small>
-          </form>
+            <a className="form-launch" href="formulario/">Abrir formulario y firmar online <ArrowRight size={18} /></a>
+            <small>Modo de prueba: genera y descarga el PDF cumplimentado.</small>
+          </div>
         </div>
       </section>
 
