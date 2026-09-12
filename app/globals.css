@@ -162,6 +162,9 @@ h2 { font-size: clamp(2.7rem, 5.6vw, 5.1rem); }
 .online-question label { min-width: 66px; display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px; border: 1px solid #334650; color: #dce6e9; cursor: pointer; }
 .online-question label:has(input:checked) { border-color: #28dff6; background: #102b33; color: #28dff6; }
 .online-question input { accent-color: #28dff6; }
+.additional-info { display: grid; gap: 10px; margin-top: 24px; color: #dce6e9; font-size: .95rem; font-weight: 800; }
+.additional-info textarea { width: 100%; min-height: 132px; resize: vertical; padding: 14px; border: 1px solid #334650; background: #071016; color: white; font: inherit; line-height: 1.55; }
+.additional-info textarea:focus { outline: 2px solid #28dff6; outline-offset: 1px; }
 .consent-summary { padding: 26px; border-left: 3px solid #28dff6; background: #0d1c23; }
 .consent-summary h2 { margin: 0 0 14px; font-size: 1.45rem; line-height: 1.15; }
 .consent-summary p { color: #a8b8be; line-height: 1.65; }
