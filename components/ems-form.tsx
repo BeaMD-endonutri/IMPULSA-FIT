@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { PDFDocument, PDFTextField, StandardFonts, rgb } from "pdf-lib";
-import { ArrowLeft, Check, Download, Eraser, FileSignature, Send, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Check, Eraser, FileSignature, Send, ShieldCheck } from "lucide-react";
 
 type Answers = Record<number, "si" | "no" | "">;
 
@@ -83,6 +83,22 @@ function assetPath(file: string) {
   return `/documentos/${file}`;
 }
 
+function emailEndpoint() {
+  if (typeof window !== "undefined" && window.location.hostname.endsWith("github.io")) {
+    return "https://impulsa-fit-huelva.bea-md.chatgpt.site/api/enviar-formulario";
+  }
+  return "/api/enviar-formulario";
+}
+
+function bytesToBase64(bytes: Uint8Array) {
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+  }
+  return btoa(binary);
+}
+
 export default function EmsForm() {
   const [answers, setAnswers] = useState<Answers>(Object.fromEntries(questions.map((_, index) => [index, ""])));
   const [consentSignature, setConsentSignature] = useState("");
@@ -150,16 +166,28 @@ export default function EmsForm() {
     try {
       const data = new FormData(event.currentTarget);
       const bytes = await buildPdf(data);
-      const blob = new Blob([bytes as BlobPart], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `IMPULSA_FIT_${String(data.get("nombre") || "usuario").replace(/\s+/g, "_")}.pdf`;
-      link.click();
-      URL.revokeObjectURL(url);
-      setStatus("PDF generado correctamente. En esta fase de prueba se ha descargado en tu dispositivo.");
-    } catch {
-      setStatus("No se ha podido generar el documento. Revisa los datos e inténtalo de nuevo.");
+      const fullName = `${data.get("nombre") || ""} ${data.get("apellidos") || ""}`.trim();
+      const response = await fetch(emailEndpoint(), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          pdfBase64: bytesToBase64(bytes),
+          filename: `IMPULSA_FIT_${fullName.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]+/g, "_")}.pdf`,
+          fullName,
+          email: String(data.get("email") || ""),
+          phone: String(data.get("telefono") || ""),
+        }),
+      });
+      const result = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) throw new Error(result.error || "No se pudo enviar el formulario");
+      event.currentTarget.reset();
+      setAnswers(Object.fromEntries(questions.map((_, index) => [index, ""])));
+      setAccepted(false);
+      setConsentSignature("");
+      setAnamnesisSignature("");
+      setStatus("Formulario enviado correctamente. Hemos recibido el PDF cumplimentado y firmado.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "No se ha podido enviar el documento. Inténtalo de nuevo.");
     } finally { setBusy(false); }
   };
 
@@ -177,7 +205,7 @@ export default function EmsForm() {
 
           <fieldset><legend>4. Firmas online</legend><div className="signature-grid"><SignaturePad label="Firma de la anamnesis" onChange={setAnamnesisSignature} /><SignaturePad label="Firma del consentimiento informado" onChange={setConsentSignature} /></div></fieldset>
 
-          <div className="submission-box"><div><h2>Documento conjunto</h2><p>Se generará un PDF con la anamnesis y el consentimiento, ambos cumplimentados y firmados.</p><p className="test-mode">Modo de prueba: el PDF se descargará en tu dispositivo. El envío automático a <strong>nutri.bea.md@gmail.com</strong> se activará al conectar el servicio de correo seguro.</p></div><button type="submit" disabled={busy}>{busy ? "Generando…" : "Generar PDF de prueba"} {busy ? <Download size={19} /> : <Send size={19} />}</button></div>
+          <div className="submission-box"><div><h2>Enviar documentos firmados</h2><p>Se generará un único PDF con la anamnesis y el consentimiento, ambos cumplimentados y firmados, y se enviará de forma segura a nuestro equipo.</p><p className="test-mode">Destino: <strong>nutri.bea.md@gmail.com</strong>. No almacenamos una copia adicional en esta web.</p></div><button type="submit" disabled={busy}>{busy ? "Enviando…" : "Firmar y enviar formulario"} <Send size={19} /></button></div>
           {status && <p className="form-status" role="status"><Check size={18} /> {status}</p>}
         </form>
       </div>
