@@ -36,10 +36,12 @@ export async function POST(request: Request) {
       fullName?: string;
       email?: string;
       phone?: string;
+      otherInfo?: string;
     };
     const fullName = String(body.fullName || "").trim().slice(0, 140);
     const email = String(body.email || "").trim().slice(0, 180);
     const phone = String(body.phone || "").trim().slice(0, 50);
+    const otherInfo = String(body.otherInfo || "").trim().slice(0, 3000);
     const pdfBase64 = String(body.pdfBase64 || "");
     const filename = String(body.filename || "formulario-ems-firmado.pdf").replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ_.-]/g, "_").slice(0, 180);
 
@@ -60,11 +62,11 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: "IMPULSA FIT <onboarding@resend.dev>",
-        to: ["nutri.bea.md@gmail.com"],
+        to: ["nutrialex.27@gmail.com"],
         reply_to: email,
         subject: `Nuevo formulario EMS firmado — ${fullName}`,
-        text: `Se ha recibido un nuevo formulario EMS cumplimentado y firmado.\n\nNombre: ${fullName}\nCorreo: ${email}\nTeléfono: ${phone || "No indicado"}\n\nEl documento conjunto se adjunta en PDF.`,
-        html: `<h2>Nuevo formulario EMS firmado</h2><p>Se ha recibido un nuevo formulario cumplimentado y firmado.</p><ul><li><strong>Nombre:</strong> ${escapeHtml(fullName)}</li><li><strong>Correo:</strong> ${escapeHtml(email)}</li><li><strong>Teléfono:</strong> ${escapeHtml(phone || "No indicado")}</li></ul><p>El documento conjunto se adjunta en PDF.</p>`,
+        text: `Se ha recibido un nuevo formulario EMS cumplimentado y firmado.\n\nNombre: ${fullName}\nCorreo: ${email}\nTeléfono: ${phone || "No indicado"}\nOtra información: ${otherInfo || "No indicada"}\n\nEl documento conjunto se adjunta en PDF.`,
+        html: `<h2>Nuevo formulario EMS firmado</h2><p>Se ha recibido un nuevo formulario cumplimentado y firmado.</p><ul><li><strong>Nombre:</strong> ${escapeHtml(fullName)}</li><li><strong>Correo:</strong> ${escapeHtml(email)}</li><li><strong>Teléfono:</strong> ${escapeHtml(phone || "No indicado")}</li><li><strong>Otra información:</strong> ${escapeHtml(otherInfo || "No indicada")}</li></ul><p>El documento conjunto se adjunta en PDF.</p>`,
         attachments: [{ filename, content: pdfBase64 }],
       }),
     });
