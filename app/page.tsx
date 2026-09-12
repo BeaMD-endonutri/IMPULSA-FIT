@@ -137,15 +137,15 @@ export default function Home() {
           <div className="contact-copy">
             <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
             <h2>¿Te gustaría<br /><span>probar una sesión?</span></h2>
-            <p>Completa online el formulario de valoración y el consentimiento informado, firma ambos desde el móvil y genera un único PDF con toda la información.</p>
-            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas y firmas los dos documentos. Durante la prueba podrás descargar el PDF final antes de activar el envío automático.</span></div>
+            <p>Completa online el formulario de valoración y el consentimiento informado, firma ambos desde el móvil y envíanos un único PDF con toda la información.</p>
+            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas y firmas los dos documentos. Al finalizar, el PDF firmado llega directamente a nuestro equipo.</span></div>
           </div>
           <div className="preview-form" aria-label="Acceso al formulario online">
             <label>Nombre y apellidos<input type="text" placeholder="Tu nombre" disabled /></label>
             <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
             <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
             <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
-            <small>Modo de prueba: genera y descarga el PDF cumplimentado.</small>
+            <small>Envío seguro del PDF cumplimentado y firmado.</small>
           </div>
         </div>
       </section>
