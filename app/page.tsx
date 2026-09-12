@@ -1,20 +1,20 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
-  TimerReset, UserRoundCheck, X,
+  AtSign, Camera, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
+  TimerReset, UserRoundCheck,
 } from "lucide-react";
 
 const evidence = [
-  { icon: Dumbbell, title: "Fuerza y función muscular", text: "Los estudios muestran mejoras de fuerza y capacidad funcional frente a no entrenar. La respuesta depende del programa, la intensidad y la constancia." },
-  { icon: Activity, title: "Masa muscular y composición corporal", text: "La evidencia es favorable, sobre todo en personas sedentarias o con poca afinidad por el gimnasio. No sustituye una alimentación adecuada ni garantiza perder grasa." },
-  { icon: HeartPulse, title: "Bajo impacto articular", text: "Permite generar estímulo muscular con poca carga externa. Puede ser una opción útil cuando el tiempo, la tolerancia a las cargas o la motivación son una barrera." },
+  { icon: Dumbbell, title: "Fuerza y función muscular", text: "La WB-EMS activa simultáneamente grandes grupos musculares y puede favorecer mejoras de fuerza, rendimiento funcional y calidad muscular con una programación constante." },
+  { icon: Activity, title: "Masa muscular y composición corporal", text: "Combinada con ejercicio activo y hábitos saludables, puede contribuir a mejorar la masa muscular y la composición corporal, especialmente al comenzar a entrenar." },
+  { icon: HeartPulse, title: "Estímulo global con menor carga externa", text: "Permite trabajar intensamente la musculatura utilizando cargas externas moderadas, una ventaja para personalizar el entrenamiento y reducir el impacto articular." },
 ];
 
 const profiles = [
   { number: "01", title: "Si empiezas desde cero", text: "Una sesión guiada reduce la complejidad: aprendemos movimientos sencillos y graduamos el estímulo zona a zona." },
-  { number: "02", title: "Si vas justo de tiempo", text: "La WB-EMS concentra un estímulo global en sesiones cortas. Es eficiencia de tiempo, no un atajo sin esfuerzo." },
-  { number: "03", title: "Si ya entrenas", text: "Puede sumar un estímulo complementario y específico. No reemplaza por sí sola la técnica, las cargas, el cardio ni tu práctica deportiva." },
-  { number: "04", title: "Si necesitas adaptar cargas", text: "Puede reducir la carga externa, siempre tras valorar antecedentes, limitaciones y objetivos. Las patologías requieren criterio sanitario." },
+  { number: "02", title: "Si vas justo de tiempo", text: "En unos 40 minutos realizas una sesión completa, guiada y adaptada a tu nivel, aprovechando al máximo el tiempo disponible." },
+  { number: "03", title: "Si ya entrenas", text: "Puede añadir una sesión complementaria para reforzar el estímulo muscular, trabajar puntos débiles y aportar variedad a tu planificación." },
+  { number: "04", title: "Si necesitas adaptar cargas", text: "Permite ajustar la carga externa y la intensidad de cada zona muscular tras valorar tus antecedentes, limitaciones y objetivos." },
 ];
 
 export default function Home() {
@@ -26,12 +26,12 @@ export default function Home() {
           <span>IMPULSA<span>FIT</span></span>
         </a>
         <nav aria-label="Navegación principal">
-          <a href="#que-es">Qué es</a><a href="#evidencia">Evidencia</a><a href="#para-quien">Para quién</a><a href="#seguridad">Seguridad</a>
+          <a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a>
         </nav>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Qué es</a><a href="#evidencia">Evidencia</a><a href="#para-quien">Para quién</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a></div>
+          <div><a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
 
@@ -40,13 +40,13 @@ export default function Home() {
         <div className="hero-content wrap">
           <p className="eyebrow"><span /> EMS PERFORMANCE STUDIO · HUELVA</p>
           <h1>Entrena todo tu cuerpo.<br /><em>Impulsa tu tiempo.</em></h1>
-          <p className="hero-copy">Entrenamiento WB-EMS personalizado, activo y siempre supervisado. Un estímulo global en sesiones cortas, explicado sin mitos y con la evidencia por delante.</p>
+          <p className="hero-copy">Entrenamiento WB-EMS personalizado, activo y siempre supervisado. Una sesión completa de unos 40 minutos para trabajar todo el cuerpo de forma eficiente.</p>
           <div className="hero-actions">
             <a className="button primary" href="#contacto">Solicitar valoración <ArrowRight size={19} /></a>
-            <a className="button ghost" href="#evidencia">Ver qué dice la ciencia</a>
+            <a className="button ghost" href="#beneficios">Descubrir los beneficios</a>
           </div>
           <div className="hero-points" aria-label="Características principales">
-            <span><UserRoundCheck size={18} /> Supervisión cercana</span><span><TimerReset size={18} /> Sesiones progresivas</span><span><ShieldCheck size={18} /> Valoración previa</span>
+            <span><UserRoundCheck size={18} /> Supervisión cercana</span><span><TimerReset size={18} /> Unos 40 minutos</span><span><ShieldCheck size={18} /> Valoración previa</span>
           </div>
         </div>
       </section>
@@ -68,25 +68,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="science" id="evidencia">
+      <section className="science" id="beneficios">
         <div className="wrap">
           <div className="section-heading">
-            <div><div className="section-kicker"><BadgeCheck size={18} /> LO QUE SÍ RESPALDA LA CIENCIA</div><h2>Beneficios reales.<br /><span>Promesas honestas.</span></h2></div>
-            <p>La WB-EMS puede ser eficaz y eficiente, sobre todo si la alternativa real es no hacer fuerza. La literatura todavía es menor y más heterogénea que la del entrenamiento convencional.</p>
+            <div><div className="section-kicker"><BadgeCheck size={18} /> BENEFICIOS CON RESPALDO CIENTÍFICO</div><h2>Más estímulo.<br /><span>Tiempo bien aprovechado.</span></h2></div>
+            <p>La WB-EMS combina contracciones voluntarias con impulsos individualizados para activar varios grupos musculares a la vez. El resultado es un entrenamiento global, intenso y adaptable.</p>
           </div>
           <div className="evidence-grid">
             {evidence.map(({ icon: Icon, title, text }) => <article className="evidence-card" key={title}><Icon size={27} /><h3>{title}</h3><p>{text}</p></article>)}
           </div>
           <div className="time-fact">
-            <div className="time-number"><span>20</span><small>minutos</small></div>
-            <div><p className="eyebrow">¿EQUIVALE A DOS HORAS DE GIMNASIO?</p><h3>Es una comparación prometedora, no una ley universal.</h3><p>Un estudio de 2025 en solo 20 mujeres jóvenes sedentarias observó mejoras similares en tres pruebas tras 10 semanas con 20 min/semana de WB-EMS frente a 2 ± 1 sesiones convencionales de 60–90 min. Pero no fue aleatorizado, las participantes eligieron grupo y no permite afirmar que 20 minutos sustituyan cualquier entrenamiento.</p></div>
+            <div className="time-number"><span>40</span><small>minutos</small></div>
+            <div><p className="eyebrow">ENTRENAMIENTO COMPLETO Y EFICIENTE</p><h3>Aprovecha cada minuto de la sesión.</h3><p>En unos 40 minutos combinamos preparación, ajuste personalizado del chaleco y trabajo activo de cuerpo completo. La activación simultánea de distintos grupos musculares permite concentrar el estímulo y sacar mucho partido a cada sesión.</p></div>
             <Clock3 className="time-icon" size={56} />
           </div>
           <div className="truth-grid">
-            <div><Check size={20} /><p><strong>Sí:</strong> concentra trabajo de varios grupos musculares y puede ahorrar tiempo.</p></div>
-            <div><X size={20} /><p><strong>No:</strong> no replica todas las adaptaciones del cardio, la técnica deportiva o las cargas específicas.</p></div>
-            <div><Check size={20} /><p><strong>Sí:</strong> puede complementar tu rutina o ser una puerta de entrada al entrenamiento.</p></div>
-            <div><X size={20} /><p><strong>No:</strong> no adelgaza por sí sola ni compensa hábitos inactivos fuera de la sesión.</p></div>
+            <div><Check size={20} /><p><strong>Eficiente:</strong> trabaja varios grupos musculares de forma simultánea.</p></div>
+            <div><Check size={20} /><p><strong>Personalizada:</strong> cada zona se ajusta a tu sensibilidad y nivel.</p></div>
+            <div><Check size={20} /><p><strong>Versátil:</strong> encaja tanto al empezar como para complementar otra rutina.</p></div>
+            <div><Check size={20} /><p><strong>Progresiva:</strong> el estímulo evoluciona contigo sesión a sesión.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="facilities" id="instalaciones">
+        <div className="wrap">
+          <div className="section-heading compact">
+            <div><div className="section-kicker"><Camera size={18} /> CONOCE NUESTRO ESPACIO</div><h2>Nuestras<br /><span>instalaciones.</span></h2></div>
+            <p>Un espacio preparado para que entrenes con comodidad, atención personalizada y todo el equipamiento necesario.</p>
+          </div>
+          <div className="facility-gallery" aria-label="Galería de nuestras instalaciones">
+            {["Zona de entrenamiento", "Equipamiento EMS", "Nuestro espacio"].map((label) => <div className="facility-placeholder" key={label}><Camera size={30} /><strong>{label}</strong><span>Próximamente añadiremos una foto</span></div>)}
           </div>
         </div>
       </section>
@@ -125,14 +137,14 @@ export default function Home() {
           <div className="contact-copy">
             <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
             <h2>¿Te gustaría<br /><span>probar una sesión?</span></h2>
-            <p>Estamos preparando un formulario de valoración online para conocer tu experiencia, objetivos y antecedentes antes de contactar contigo.</p>
-            <div className="pending"><Bolt size={18} /><span><strong>Siguiente paso</strong> Añadiremos aquí tus preguntas y el correo receptor cuando nos los facilites.</span></div>
+            <p>Muy pronto podrás completar online el formulario de valoración y el consentimiento informado, firmarlos desde el móvil y enviarlos directamente a nuestro equipo.</p>
+            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas, firmas ambos documentos y recibimos toda la información para preparar tu primera sesión.</span></div>
           </div>
           <form className="preview-form" aria-label="Vista previa del futuro formulario">
             <label>Nombre y apellidos<input type="text" placeholder="Tu nombre" disabled /></label>
             <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
             <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
-            <button type="button" disabled>Formulario disponible próximamente <ArrowRight size={18} /></button>
+            <button type="button" disabled>Formulario y firma disponibles próximamente <ArrowRight size={18} /></button>
             <small>No se envía ni almacena información en esta versión.</small>
           </form>
         </div>
