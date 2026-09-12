@@ -17,6 +17,14 @@ const profiles = [
   { number: "04", title: "Si necesitas adaptar cargas", text: "Permite ajustar la carga externa y la intensidad de cada zona muscular tras valorar tus antecedentes, limitaciones y objetivos." },
 ];
 
+const studioGallery = [
+  { image: "instagram/impulsa-01.webp", title: "Estamos en Huelva", text: "Alameda Sundheim, 14", href: "https://www.instagram.com/p/DThr8GEjKSe/" },
+  { image: "instagram/impulsa-02.webp", title: "EMS Performance Studio", text: "Un espacio con identidad propia", href: "https://www.instagram.com/p/DcgwOpgEewv/" },
+  { image: "instagram/impulsa-03.webp", title: "Activación global", text: "Hasta 300 músculos a la vez", href: "https://www.instagram.com/p/DaOJMmGAs95/?img_index=3" },
+  { image: "instagram/impulsa-04.webp", title: "Tecnología EMS", text: "Fitness inteligente en Huelva", href: "https://www.instagram.com/p/DZnhR0tiK7r/" },
+  { image: "instagram/impulsa-05.webp", title: "Entrenamiento personalizado", text: "Cada sesión, adaptada a ti", href: "https://www.instagram.com/p/DZE9ozkCvUV/" },
+];
+
 export default function Home() {
   return (
     <main>
@@ -110,11 +118,19 @@ export default function Home() {
         <div className="wrap">
           <div className="section-heading compact">
             <div><div className="section-kicker"><Camera size={18} /> CONOCE NUESTRO ESPACIO</div><h2>Nuestras<br /><span>instalaciones.</span></h2></div>
-            <p>Un espacio preparado para que entrenes con comodidad, atención personalizada y todo el equipamiento necesario.</p>
+            <p>Un estudio diseñado para vivir la EMS de otra manera: tecnología, energía y atención personalizada en un mismo espacio.</p>
           </div>
-          <div className="facility-gallery" aria-label="Galería de nuestras instalaciones">
-            {["Zona de entrenamiento", "Equipamiento EMS", "Nuestro espacio"].map((label) => <div className="facility-placeholder" key={label}><Camera size={30} /><strong>{label}</strong><span>Próximamente añadiremos una foto</span></div>)}
+          <div className="facility-gallery" aria-label="Galería de IMPULSA FIT">
+            {studioGallery.map((item, index) => (
+              <a className={`facility-photo facility-photo-${index + 1}`} href={item.href} target="_blank" rel="noreferrer" key={item.title} aria-label={`${item.title}. Ver publicación en Instagram`}>
+                <img src={item.image} alt={`${item.title} en IMPULSA FIT Huelva`} loading="lazy" />
+                <span className="facility-glow" aria-hidden="true" />
+                <span className="facility-caption"><small>0{index + 1} · @impulsafit_huelva</small><strong>{item.title}</strong><em>{item.text}</em></span>
+                <ArrowRight className="facility-arrow" size={22} />
+              </a>
+            ))}
           </div>
+          <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
         </div>
       </section>
 
