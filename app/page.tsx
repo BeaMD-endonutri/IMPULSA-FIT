@@ -144,7 +144,7 @@ export default function Home() {
             <label>Nombre y apellidos<input type="text" placeholder="Tu nombre" disabled /></label>
             <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
             <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
-            <a className="form-launch" href="formulario/">Abrir formulario y firmar online <ArrowRight size={18} /></a>
+            <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
             <small>Modo de prueba: genera y descarga el PDF cumplimentado.</small>
           </div>
         </div>
