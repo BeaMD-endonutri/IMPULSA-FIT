@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
+  AtSign, Camera, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
   TimerReset, UserRoundCheck,
 } from "lucide-react";
 
@@ -176,6 +176,7 @@ export default function Home() {
             <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
             <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
             <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
+            <a className="consent-download" href="documentos/Consentimiento_Informado_EMS.pdf" target="_blank" rel="noreferrer"><FileSignature size={17} /> Leer consentimiento informado (PDF)</a>
             <small>Envío seguro del PDF cumplimentado y firmado.</small>
           </div>
         </div>
