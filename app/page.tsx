@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, Clapperboard, FileSignature, Headphones, HeartPulse, LockKeyhole, Mail, Menu, ShieldCheck, Sparkles,
+  AtSign, Camera, Clapperboard, ExternalLink, FileSignature, Globe2, Headphones, HeartPulse, LockKeyhole, Mail, MapPin, Menu, Phone, ShieldCheck, Sparkles,
   Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
@@ -31,6 +31,12 @@ const facilityVideos = [
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-instalaciones-02.mp4", poster: "video-instalaciones-02-poster.webp", title: "Tu zona de entrenamiento", text: "Tecnología y movimiento en un espacio propio" },
 ];
 
+const condesGallery = [
+  { image: "https://condefitness.com/wp-content/uploads/2024/04/RE220809-02.webp", alt: "Exterior de Condes Wellness & Fitness en Huelva" },
+  { image: "https://condefitness.com/wp-content/uploads/2024/02/gallery_01_05-240x300.webp", alt: "Instalaciones de Condes Wellness & Fitness" },
+  { image: "https://condefitness.com/wp-content/uploads/2024/02/gallery_01_03-240x300.webp", alt: "Zona deportiva de Condes Wellness & Fitness" },
+];
+
 const clientVideos = [
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-01.mp4", poster: "cliente-01-poster.webp", title: "Fuerza en movimiento", text: "Entrenamiento activo con tecnología Wiemspro" },
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-02.mp4", poster: "cliente-02-poster.webp", title: "Progresión guiada", text: "Cada ejercicio se adapta al nivel de la persona" },
@@ -52,12 +58,12 @@ export default function Home() {
           <img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT · EMS Performance Studio" />
         </a>
         <nav aria-label="Navegación principal">
-          <a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#clientes">Nuestros clientes</a><a href="#resenas">Reseñas</a>
+          <a href="#que-es">Tecnología Wiemspro</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#resenas">Reseñas</a>
         </nav>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
+          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
 
@@ -125,7 +131,7 @@ export default function Home() {
               </div>
               <div className="clothing-note">
                 <Shirt size={27} />
-                <div><strong>¿Qué ropa debes traer?</strong><p>Una <b>camiseta negra ceñida de manga corta o media manga</b> y unas <b>mallas negras largas y ajustadas</b>. Deben ser prendas cómodas, transpirables y sin cremalleras, botones ni piezas metálicas que puedan quedar bajo el traje. Esta primera capa favorece el contacto uniforme, el movimiento y la higiene durante la sesión.</p></div>
+                <div><strong>Ropa técnica para empezar</strong><p>Al contratar tu primer bono, el personal de IMPULSA FIT te proporcionará la ropa técnica necesaria para comenzar: una <b>camiseta negra ceñida de manga corta o media manga</b> y unas <b>mallas negras largas y ajustadas</b>. Después deberás adquirir tu propio conjunto para las siguientes sesiones. Estas prendas son transpirables y no llevan cremalleras, botones ni elementos metálicos bajo el traje, favoreciendo el contacto uniforme, la libertad de movimiento y la higiene.</p></div>
               </div>
             </div>
             <figure className="wiemspro-visual"><img src="tecnologia-wiemspro.webp" alt="Traje profesional Wiemspro y sus principales características" loading="lazy" /><figcaption>Tecnología Wiemspro utilizada en IMPULSA FIT</figcaption></figure>
@@ -210,6 +216,31 @@ export default function Home() {
             <div><p className="eyebrow">EL ÚLTIMO IMPULSO ES PARAR</p><h3>Finalizamos con una fase de relajación.</h3><p>Al terminar el entrenamiento bajamos el ritmo y reservamos unos minutos para cerrar la sesión con calma. Incorporamos <strong>cascos con cancelación de ruido</strong> para favorecer un mayor bienestar, aislamiento del entorno y conexión con ese momento de recuperación.</p></div>
           </aside>
           <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
+        </div>
+      </section>
+
+      <section className="location-section" id="donde-estamos">
+        <div className="wrap location-shell">
+          <div className="location-copy">
+            <div className="section-kicker"><MapPin size={18} /> DÓNDE NOS ENCONTRAMOS</div>
+            <h2>Tu espacio EMS,<br /><span>en pleno Huelva.</span></h2>
+            <p>IMPULSA FIT se encuentra dentro de <strong>Condes Wellness &amp; Fitness</strong>, un entorno deportivo amplio y cuidado en el que podrás realizar tus sesiones con comodidad.</p>
+            <a className="location-address" href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd11d1d2443dd84d:0xc09dc2ca9aca6448?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noreferrer">
+              <MapPin size={24} /><span><small>ABRIR EN GOOGLE MAPS</small>Av. Escultora Miss Whitney, 9<br />21003 Huelva</span><ExternalLink size={18} />
+            </a>
+            <div className="location-links">
+              <a href="tel:+34601639931"><Phone size={19} /><span><small>TELÉFONO</small>601 63 99 31</span></a>
+              <a href="https://condefitness.com/" target="_blank" rel="noreferrer"><Globe2 size={19} /><span><small>WEB</small>condefitness.com</span></a>
+              <a href="https://www.instagram.com/condeswellness_fitness/" target="_blank" rel="noreferrer"><AtSign size={19} /><span><small>INSTAGRAM</small>@condeswellness_fitness</span></a>
+            </div>
+          </div>
+          <div className="location-visuals">
+            <div className="condes-brand-card"><span>ESTAMOS DENTRO DE</span><img src="https://condefitness.com/wp-content/uploads/2024/02/logo_white.webp" alt="Condes Wellness & Fitness" loading="lazy" referrerPolicy="no-referrer" /></div>
+            <div className="condes-gallery">
+              {condesGallery.map((item, index) => <figure key={item.image} className={`condes-photo condes-photo-${index + 1}`}><img src={item.image} alt={item.alt} loading="lazy" referrerPolicy="no-referrer" /></figure>)}
+            </div>
+            <a className="condes-credit" href="https://condefitness.com/" target="_blank" rel="noreferrer">Imágenes oficiales de Condes Wellness &amp; Fitness <ExternalLink size={14} /></a>
+          </div>
         </div>
       </section>
 

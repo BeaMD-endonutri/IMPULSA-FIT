@@ -23,6 +23,8 @@ const questions = [
   "¿Conoces alguna otra razón por la cual no deberías realizar entrenamiento con electroestimulación?",
 ];
 
+const objectives = ["Ganar masa muscular", "Mantenimiento", "Recomposición corporal", "Pérdida de grasa", "Otro"] as const;
+
 function SignaturePad({ label, onChange }: { label: string; onChange: (value: string) => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
@@ -183,6 +185,7 @@ export default function EmsForm() {
   const [consentSignature, setConsentSignature] = useState("");
   const [anamnesisSignature, setAnamnesisSignature] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const [objective, setObjective] = useState("");
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
 
@@ -193,6 +196,9 @@ export default function EmsForm() {
     const boldFont = await consent.embedFont(StandardFonts.HelveticaBold);
     const pdfForm = consent.getForm();
     const fullName = `${formData.get("nombre") || ""} ${formData.get("apellidos") || ""}`.trim();
+    const selectedObjective = String(formData.get("objetivo") || "");
+    const objectiveDetail = String(formData.get("objetivoOtro") || "").trim();
+    const objectiveText = selectedObjective === "Otro" && objectiveDetail ? `Otro: ${objectiveDetail}` : selectedObjective;
     const date = new Date(String(formData.get("fecha")) + "T12:00:00");
     const fieldValues: Record<string, string> = {
       Nombre: String(formData.get("nombre") || ""), Apellidos: String(formData.get("apellidos") || ""),
@@ -244,7 +250,17 @@ export default function EmsForm() {
     additionalPage.drawText("INFORMACIÓN ADICIONAL", { x: 54, y: 770, size: 18, font, color: rgb(0, .25, .35) });
     additionalPage.drawText(`Persona: ${fullName}`, { x: 54, y: 738, size: 10, font, color: rgb(.2, .25, .28) });
     additionalPage.drawText(`Fecha: ${String(formData.get("fecha") || "")}`, { x: 54, y: 720, size: 10, font, color: rgb(.2, .25, .28) });
-    additionalPage.drawText("Otra información que deberíamos saber sobre ti", { x: 54, y: 680, size: 12, font, color: rgb(.05, .08, .1) });
+    additionalPage.drawText("Objetivo principal", { x: 54, y: 686, size: 12, font: boldFont, color: rgb(.05, .08, .1) });
+    const objectiveLines: string[] = [];
+    let objectiveLine = "";
+    for (const word of (objectiveText || "No indicado").split(/\s+/)) {
+      const candidate = objectiveLine ? `${objectiveLine} ${word}` : word;
+      if (font.widthOfTextAtSize(candidate, 10) <= 487) objectiveLine = candidate;
+      else { if (objectiveLine) objectiveLines.push(objectiveLine); objectiveLine = word; }
+    }
+    if (objectiveLine) objectiveLines.push(objectiveLine);
+    objectiveLines.slice(0, 2).forEach((item, index) => additionalPage.drawText(item, { x: 54, y: 665 - (index * 14), size: 10, font, color: rgb(.12, .16, .18) }));
+    additionalPage.drawText("Otra información que deberíamos saber sobre ti", { x: 54, y: 625, size: 12, font: boldFont, color: rgb(.05, .08, .1) });
     const text = additionalInfo || "No se ha indicado información adicional.";
     const words = text.split(/\s+/);
     const lines: string[] = [];
@@ -259,7 +275,7 @@ export default function EmsForm() {
     }
     if (line) lines.push(line);
     lines.slice(0, 42).forEach((item, index) => additionalPage.drawText(item, {
-      x: 54, y: 652 - (index * 15), size: 10, font, color: rgb(.12, .16, .18),
+      x: 54, y: 597 - (index * 15), size: 10, font, color: rgb(.12, .16, .18),
     }));
     consent.setTitle(`Anamnesis y consentimiento EMS - ${fullName}`);
     consent.setAuthor("IMPULSA FIT");
@@ -286,6 +302,8 @@ export default function EmsForm() {
           fullName,
           email: String(data.get("email") || ""),
           phone: String(data.get("telefono") || ""),
+          objective: String(data.get("objetivo") || ""),
+          objectiveOther: String(data.get("objetivoOtro") || ""),
           otherInfo: String(data.get("otraInformacion") || ""),
         }),
       });
@@ -294,6 +312,7 @@ export default function EmsForm() {
       form.reset();
       setAnswers(Object.fromEntries(questions.map((_, index) => [index, ""])));
       setAccepted(false);
+      setObjective("");
       setConsentSignature("");
       setAnamnesisSignature("");
       setStatus("Formulario enviado correctamente. Hemos recibido el PDF cumplimentado y firmado.");
@@ -308,7 +327,7 @@ export default function EmsForm() {
       <div className="form-shell">
         <div className="form-intro"><p className="section-kicker"><ShieldCheck size={18} /> PROCESO SEGURO Y GUIADO</p><h1>Prepárate para<br /><em>tu primera sesión.</em></h1><p>Completa la anamnesis, revisa el consentimiento y firma ambos documentos. Recibirás un único PDF con toda la información.</p><div className="form-steps"><span><b>1</b> Datos</span><span><b>2</b> Anamnesis</span><span><b>3</b> Consentimiento</span><span><b>4</b> Firmas</span></div></div>
         <form className="ems-form" onSubmit={submit}>
-          <fieldset><legend>1. Datos personales</legend><div className="online-grid"><label>Nombre<input name="nombre" required autoComplete="given-name" /></label><label>Apellidos<input name="apellidos" required autoComplete="family-name" /></label><label>DNI/NIE<input name="dni" required /></label><label>Fecha de nacimiento<input name="nacimiento" type="date" required /></label><label>Teléfono<input name="telefono" type="tel" required autoComplete="tel" /></label><label>Correo electrónico<input name="email" type="email" required autoComplete="email" /></label><label>Ciudad<input name="ciudad" defaultValue="Huelva" required /></label><label>Fecha de firma<input name="fecha" type="date" defaultValue={new Date().toISOString().slice(0, 10)} required /></label></div></fieldset>
+          <fieldset><legend>1. Datos personales</legend><div className="online-grid"><label>Nombre<input name="nombre" required autoComplete="given-name" /></label><label>Apellidos<input name="apellidos" required autoComplete="family-name" /></label><label>DNI/NIE<input name="dni" required /></label><label>Fecha de nacimiento<input name="nacimiento" type="date" required /></label><label>Teléfono<input name="telefono" type="tel" required autoComplete="tel" /></label><label>Correo electrónico<input name="email" type="email" required autoComplete="email" /></label><label>Ciudad<input name="ciudad" defaultValue="Huelva" required /></label><label>Fecha de firma<input name="fecha" type="date" defaultValue={new Date().toISOString().slice(0, 10)} required /></label><label className="objective-field">Objetivo principal<select name="objetivo" required value={objective} onChange={(event) => setObjective(event.target.value)}><option value="" disabled>Selecciona tu objetivo</option>{objectives.map((item) => <option key={item} value={item}>{item}</option>)}</select></label>{objective === "Otro" && <label className="objective-field objective-other">Detalla tu objetivo<input name="objetivoOtro" required maxLength={300} placeholder="Cuéntanos qué quieres conseguir" /></label>}</div></fieldset>
 
           <fieldset><legend>2. Cuestionario de preparación</legend><p className="field-help">Responde con sinceridad. Una respuesta afirmativa servirá para que el profesional valore tu caso antes de entrenar.</p><div className="question-list">{questions.map((question, index) => <div className="online-question" key={question}><p><b>{index + 1}.</b> {question}</p><div role="radiogroup" aria-label={question}><label><input type="radio" name={`q${index + 1}`} value="si" checked={answers[index] === "si"} onChange={() => setAnswers({ ...answers, [index]: "si" })} /> Sí</label><label><input type="radio" name={`q${index + 1}`} value="no" checked={answers[index] === "no"} onChange={() => setAnswers({ ...answers, [index]: "no" })} /> No</label></div></div>)}</div><label className="additional-info">Otra información que deberíamos saber sobre ti<textarea name="otraInformacion" rows={5} maxLength={3000} placeholder="Cuéntanos cualquier dato de salud, lesión, tratamiento o circunstancia que pueda ser relevante (opcional)." /></label></fieldset>
 

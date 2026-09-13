@@ -36,16 +36,21 @@ export async function POST(request: Request) {
       fullName?: string;
       email?: string;
       phone?: string;
+      objective?: string;
+      objectiveOther?: string;
       otherInfo?: string;
     };
     const fullName = String(body.fullName || "").trim().slice(0, 140);
     const email = String(body.email || "").trim().slice(0, 180);
     const phone = String(body.phone || "").trim().slice(0, 50);
+    const objective = String(body.objective || "").trim().slice(0, 80);
+    const objectiveOther = String(body.objectiveOther || "").trim().slice(0, 300);
     const otherInfo = String(body.otherInfo || "").trim().slice(0, 3000);
     const pdfBase64 = String(body.pdfBase64 || "");
     const filename = String(body.filename || "formulario-ems-firmado.pdf").replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ_.-]/g, "_").slice(0, 180);
 
-    if (!fullName || !/^\S+@\S+\.\S+$/.test(email) || !pdfBase64.startsWith("JVBERi0") || pdfBase64.length > 18_000_000) {
+    const allowedObjectives = new Set(["Ganar masa muscular", "Mantenimiento", "Recomposición corporal", "Pérdida de grasa", "Otro"]);
+    if (!fullName || !/^\S+@\S+\.\S+$/.test(email) || !allowedObjectives.has(objective) || (objective === "Otro" && !objectiveOther) || !pdfBase64.startsWith("JVBERi0") || pdfBase64.length > 18_000_000) {
       return Response.json({ error: "Los datos del formulario están incompletos o el documento es demasiado grande." }, { status: 400, headers });
     }
 
@@ -65,8 +70,8 @@ export async function POST(request: Request) {
         to: ["nutri.bea.md@gmail.com"],
         reply_to: email,
         subject: `Nuevo formulario EMS firmado — ${fullName}`,
-        text: `Se ha recibido un nuevo formulario EMS cumplimentado y firmado.\n\nNombre: ${fullName}\nCorreo: ${email}\nTeléfono: ${phone || "No indicado"}\nOtra información: ${otherInfo || "No indicada"}\n\nEl documento conjunto se adjunta en PDF.`,
-        html: `<h2>Nuevo formulario EMS firmado</h2><p>Se ha recibido un nuevo formulario cumplimentado y firmado.</p><ul><li><strong>Nombre:</strong> ${escapeHtml(fullName)}</li><li><strong>Correo:</strong> ${escapeHtml(email)}</li><li><strong>Teléfono:</strong> ${escapeHtml(phone || "No indicado")}</li><li><strong>Otra información:</strong> ${escapeHtml(otherInfo || "No indicada")}</li></ul><p>El documento conjunto se adjunta en PDF.</p>`,
+        text: `Se ha recibido un nuevo formulario EMS cumplimentado y firmado.\n\nNombre: ${fullName}\nCorreo: ${email}\nTeléfono: ${phone || "No indicado"}\nObjetivo: ${objective === "Otro" ? `Otro: ${objectiveOther}` : objective}\nOtra información: ${otherInfo || "No indicada"}\n\nEl documento conjunto se adjunta en PDF.`,
+        html: `<h2>Nuevo formulario EMS firmado</h2><p>Se ha recibido un nuevo formulario cumplimentado y firmado.</p><ul><li><strong>Nombre:</strong> ${escapeHtml(fullName)}</li><li><strong>Correo:</strong> ${escapeHtml(email)}</li><li><strong>Teléfono:</strong> ${escapeHtml(phone || "No indicado")}</li><li><strong>Objetivo:</strong> ${escapeHtml(objective === "Otro" ? `Otro: ${objectiveOther}` : objective)}</li><li><strong>Otra información:</strong> ${escapeHtml(otherInfo || "No indicada")}</li></ul><p>El documento conjunto se adjunta en PDF.</p>`,
         attachments: [{ filename, content: pdfBase64 }],
       }),
     });
