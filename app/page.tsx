@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
+  AtSign, Camera, Clapperboard, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
   Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
@@ -26,6 +26,13 @@ const studioGallery = [
   { image: "estudio-zona-4.webp", title: "Identidad IMPULSA FIT", text: "Un entorno diseñado para moverte" },
 ];
 
+const clientVideos = [
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-01.mp4", poster: "cliente-01-poster.webp", title: "Fuerza en movimiento", text: "Entrenamiento activo con tecnología Wiemspro" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-02.mp4", poster: "cliente-02-poster.webp", title: "Progresión guiada", text: "Cada ejercicio se adapta al nivel de la persona" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-03.mp4", poster: "cliente-03-poster.webp", title: "Trabajo específico", text: "Estímulo muscular y movimiento en una misma sesión" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-04.mp4", poster: "cliente-04-poster.webp", title: "Energía IMPULSA FIT", text: "Acompañamiento cercano durante todo el entrenamiento" },
+];
+
 export default function Home() {
   return (
     <main>
@@ -34,12 +41,12 @@ export default function Home() {
           <img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT · EMS Performance Studio" />
         </a>
         <nav aria-label="Navegación principal">
-          <a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#resenas">Reseñas</a>
+          <a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#clientes">Nuestros clientes</a><a href="#resenas">Reseñas</a>
         </nav>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
+          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
 
@@ -150,6 +157,29 @@ export default function Home() {
             ))}
           </div>
           <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
+        </div>
+      </section>
+
+      <section className="clients" id="clientes">
+        <div className="wrap">
+          <div className="section-heading compact clients-heading">
+            <div><div className="section-kicker"><Clapperboard size={18} /> ENTRENAMIENTO REAL</div><h2>Nuestros<br /><span>clientes.</span></h2></div>
+            <p>Personas reales, objetivos diferentes y una misma forma de entrenar: sesiones activas, personalizadas y acompañadas de principio a fin.</p>
+          </div>
+          <div className="client-video-grid" aria-label="Vídeos de clientes entrenando en IMPULSA FIT">
+            {clientVideos.map((item, index) => (
+              <figure className="client-video-card" key={item.video}>
+                <div className="client-video-shell">
+                  <video controls playsInline preload="metadata" poster={item.poster} aria-label={`${item.title} en IMPULSA FIT`}>
+                    <source src={item.video} type="video/mp4" />
+                    Tu navegador no puede reproducir este vídeo.
+                  </video>
+                  <span className="client-video-number">0{index + 1}</span>
+                </div>
+                <figcaption><strong>{item.title}</strong><span>{item.text}</span></figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
