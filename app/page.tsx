@@ -60,10 +60,14 @@ export default function Home() {
         <nav aria-label="Navegación principal">
           <a href="#que-es">Tecnología Wiemspro</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#resenas">Reseñas</a>
         </nav>
+        <div className="header-private-access" aria-label="Accesos privados">
+          <a href="cliente"><LockKeyhole size={15} /> Área clientes</a>
+          <a href="profesional"><ShieldCheck size={15} /> Área profesional</a>
+        </div>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
+          <div className="mobile-menu-panel"><div className="mobile-private-access"><a href="cliente"><LockKeyhole size={17} /> Área clientes</a><a href="profesional"><ShieldCheck size={17} /> Área profesional</a></div><div className="mobile-public-links"><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div></div>
         </details>
       </header>
 
