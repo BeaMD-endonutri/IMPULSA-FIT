@@ -125,11 +125,11 @@ export function ProfessionalPortal() {
   const filteredClients = useMemo(() => { const query = search.toLowerCase(); return clients.filter((client) => `${client.first_name} ${client.last_name} ${client.email} ${client.phone ?? ""}`.toLowerCase().includes(query)); }, [clients, search]);
   const stats = useMemo(() => ({ active: clients.filter((client) => client.status === "active").length, sessions: clients.reduce((sum, client) => sum + Number(client.remaining_sessions || 0), 0), low: clients.filter((client) => Number(client.remaining_sessions) > 0 && Number(client.remaining_sessions) <= 2).length, expiring: clients.filter((client) => client.next_expiry && client.next_expiry < Date.now() + 30 * 86400000).length }), [clients]);
 
-  if (checking) return <main className="private-loading"><img src="/logo-impulsa-fit.webp" alt="IMPULSA FIT" /><span>Cargando acceso seguro…</span></main>;
+  if (checking) return <main className="private-loading"><img src="/logo-impulsa-fit.png" alt="IMPULSA FIT" /><span>Cargando acceso seguro…</span></main>;
   if (!authenticated) return <PrivateLogin role="professional" onSuccess={(data) => { setAuthenticated(true); setName(data.name); setMustChangePassword(data.mustChangePassword); }} />;
 
   return <main className="private-app">
-    <header className="private-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit.webp" alt="IMPULSA FIT" /><div><span><ShieldCheck size={17} /> {name}</span><button onClick={logout}><LogOut size={17} /> Salir</button></div></header>
+    <header className="private-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit.png" alt="IMPULSA FIT" /><div><span><ShieldCheck size={17} /> {name}</span><button onClick={logout}><LogOut size={17} /> Salir</button></div></header>
     <div className="private-shell">
       <aside className="private-sidebar"><p>GESTIÓN</p><button className={tab === "overview" ? "active" : ""} onClick={() => { setTab("overview"); setSelected(null); }}><LayoutDashboard size={19} /> Resumen</button><button className={tab === "clients" ? "active" : ""} onClick={() => setTab("clients")}><UsersRound size={19} /> Clientes <b>{clients.length}</b></button><button className={tab === "reviews" ? "active" : ""} onClick={() => { setTab("reviews"); setSelected(null); }}><Star size={19} /> Reseñas <b>{reviews.length}</b></button><div className="private-sidebar-note"><TicketCheck size={21} /><strong>Tarifas pendientes</strong><span>Podrás incorporarlas después sin modificar las fichas ni el historial.</span></div></aside>
       <section className="private-content">
