@@ -1,14 +1,15 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
   AtSign, Camera, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
-  TimerReset, UserRoundCheck,
+  Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
 
 const evidence = [
-  { icon: Dumbbell, title: "Fuerza y función muscular", text: "La WB-EMS activa simultáneamente grandes grupos musculares y puede favorecer mejoras de fuerza, rendimiento funcional y calidad muscular con una programación constante." },
-  { icon: Activity, title: "Masa muscular y composición corporal", text: "Combinada con ejercicio activo y hábitos saludables, puede contribuir a mejorar la masa muscular y la composición corporal, especialmente al comenzar a entrenar." },
-  { icon: HeartPulse, title: "Estímulo global con menor carga externa", text: "Permite trabajar intensamente la musculatura utilizando cargas externas moderadas, una ventaja para personalizar el entrenamiento y reducir el impacto articular." },
+  { icon: Dumbbell, title: "Fuerza y función muscular", text: "La WB-EMS puede mejorar la fuerza, la potencia y la capacidad funcional cuando se integra en un programa constante, activo y bien supervisado." },
+  { icon: Activity, title: "Masa muscular y composición corporal", text: "Combinada con ejercicio y hábitos saludables, puede ayudar a preservar o aumentar masa muscular y favorecer cambios en la composición corporal." },
+  { icon: HeartPulse, title: "Menor carga externa", text: "Permite generar un estímulo muscular intenso con cargas externas moderadas, facilitando la adaptación del entrenamiento y reduciendo el estrés mecánico articular." },
+  { icon: Clock3, title: "Trabajo global y eficiente", text: "Activa varios grupos musculares a la vez mientras te mueves, concentrando un entrenamiento de cuerpo completo en una sesión breve y planificada." },
 ];
 
 const profiles = [
@@ -19,11 +20,10 @@ const profiles = [
 ];
 
 const studioGallery = [
-  { image: "instagram/impulsa-01.webp", title: "Estamos en Huelva", text: "Alameda Sundheim, 14", href: "https://www.instagram.com/p/DThr8GEjKSe/" },
-  { image: "instagram/impulsa-02.webp", title: "EMS Performance Studio", text: "Un espacio con identidad propia", href: "https://www.instagram.com/p/DcgwOpgEewv/" },
-  { image: "instagram/impulsa-03.webp", title: "Activación global", text: "Hasta 300 músculos a la vez", href: "https://www.instagram.com/p/DaOJMmGAs95/?img_index=3" },
-  { image: "instagram/impulsa-04.webp", title: "Tecnología EMS", text: "Fitness inteligente en Huelva", href: "https://www.instagram.com/p/DZnhR0tiK7r/" },
-  { image: "instagram/impulsa-05.webp", title: "Entrenamiento personalizado", text: "Cada sesión, adaptada a ti", href: "https://www.instagram.com/p/DZE9ozkCvUV/" },
+  { image: "estudio-zona-1.webp", title: "Zona Wiemspro", text: "Equipamiento preparado para cada sesión" },
+  { image: "estudio-zona-2.webp", title: "Espacio de entrenamiento", text: "Amplitud, privacidad y atención cercana" },
+  { image: "estudio-zona-3.webp", title: "Tecnología integrada", text: "Control inalámbrico durante el ejercicio" },
+  { image: "estudio-zona-4.webp", title: "Identidad IMPULSA FIT", text: "Un entorno diseñado para moverte" },
 ];
 
 export default function Home() {
@@ -31,16 +31,15 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="IMPULSA FIT, inicio">
-          <span className="pulse-mark" aria-hidden="true"><svg viewBox="0 0 64 28"><path d="M2 15h12l5-9 8 19 8-23 8 18 5-9 5 4h9" /></svg></span>
-          <span>IMPULSA<span>FIT</span></span>
+          <img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT · EMS Performance Studio" />
         </a>
         <nav aria-label="Navegación principal">
-          <a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#resenas">Reseñas</a>
+          <a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#resenas">Reseñas</a>
         </nav>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
+          <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
 
@@ -52,7 +51,7 @@ export default function Home() {
           <p className="hero-copy">Entrenamiento WB-EMS personalizado, activo y siempre supervisado. Una sesión completa de unos 40 minutos para trabajar todo el cuerpo de forma eficiente.</p>
           <div className="hero-actions">
             <a className="button primary" href="#contacto">Solicitar valoración <ArrowRight size={19} /></a>
-            <a className="button ghost" href="#beneficios">Descubrir los beneficios</a>
+            <a className="button ghost" href="#que-es">Conocer la tecnología</a>
           </div>
           <div className="hero-points" aria-label="Características principales">
             <span><UserRoundCheck size={18} /> Supervisión cercana</span><span><TimerReset size={18} /> Unos 40 minutos</span><span><ShieldCheck size={18} /> Valoración previa</span>
@@ -69,34 +68,53 @@ export default function Home() {
             <div className="power-stat"><strong>100%</strong><span>guiado, personalizado<br />y en movimiento</span></div>
           </div>
           <div className="power-images">
-            <figure className="power-image power-image-main"><img src="ems-setup.webp" alt="Monitor ajustando un chaleco EMS antes del entrenamiento" /><figcaption><span>01</span> Ajuste profesional</figcaption></figure>
+            <figure className="power-image power-image-main"><img src="ems-setup.webp" alt="Entrenadora ajustando el traje Wiemspro Revolution Pro antes del entrenamiento" /><figcaption><span>01</span> Ajuste Wiemspro</figcaption></figure>
             <figure className="power-image power-image-float"><img src="ems-training.webp" alt="Mujer entrenando con chaleco EMS bajo supervisión profesional" /><figcaption><span>02</span> Movimiento activo</figcaption></figure>
           </div>
         </div>
       </section>
 
-      <section className="intro wrap" id="que-es">
-        <div className="section-kicker"><Bolt size={18} /> ENTENDER LA EMS</div>
-        <div className="intro-grid">
-          <div><h2>Tu movimiento.<br /><span>Nuestro impulso.</span></h2></div>
-          <div className="intro-copy">
-            <p>La electroestimulación de cuerpo completo —WB-EMS— aplica impulsos eléctricos controlados a varios grupos musculares mientras realizas ejercicios voluntarios.</p>
-            <p>El chaleco no entrena por ti: la combinación de movimiento, intensidad individualizada, progresión y acompañamiento profesional es lo que convierte la sesión en entrenamiento.</p>
-          </div>
-        </div>
-        <div className="process" aria-label="Cómo es una sesión">
-          <div><span>01</span><strong>Valoramos</strong><p>Objetivos, experiencia y posibles contraindicaciones.</p></div>
-          <div><span>02</span><strong>Ajustamos</strong><p>El chaleco y la intensidad de cada zona muscular.</p></div>
-          <div><span>03</span><strong>Entrenamos</strong><p>Movimientos activos con corrección y feedback continuo.</p></div>
-          <div><span>04</span><strong>Progresamos</strong><p>Sin prisas: el cuerpo necesita una fase de adaptación.</p></div>
-        </div>
-      </section>
-
-      <section className="science" id="beneficios">
+      <section className="technology-combined" id="que-es">
         <div className="wrap">
+          <div className="section-kicker"><Wifi size={18} /> TECNOLOGÍA WIEMSPRO · WB-EMS INALÁMBRICA</div>
+          <div className="intro-grid">
+            <div><h2>Tu movimiento.<br /><span>Nuestro impulso.</span></h2></div>
+            <div className="intro-copy">
+              <p>La electroestimulación de cuerpo completo —WB-EMS— aplica impulsos eléctricos controlados a varios grupos musculares mientras realizas ejercicios voluntarios.</p>
+              <p>El chaleco no entrena por ti: el resultado depende del movimiento, la intensidad individualizada, una progresión adecuada y la supervisión profesional.</p>
+            </div>
+          </div>
+
+          <div className="wiemspro-feature">
+            <div className="wiemspro-copy">
+              <p className="eyebrow">SISTEMA WIEMSFIT</p>
+              <h3>Precisión muscular.<br /><span>Libertad para moverte.</span></h3>
+              <p>En IMPULSA FIT trabajamos con <strong>Wiemspro</strong>, un sistema profesional de electroestimulación inalámbrica. Su traje Revolution Pro incorpora diez pares de electrodos colocados estratégicamente para trabajar hasta diez grupos musculares de forma simultánea.</p>
+              <p>Desde la tablet, el profesional adapta el impulso de cada zona a tu sensibilidad y objetivo. El diseño ergonómico, las correas regulables y los tejidos flexibles mantienen los electrodos en contacto mientras haces sentadillas, zancadas, empujes, tracciones y otros ejercicios activos sin depender de cables.</p>
+              <div className="wiemspro-points">
+                <span><Wifi size={18} /><b>Wireless</b> Movimiento sin cables</span>
+                <span><Activity size={18} /><b>10 zonas</b> Intensidad individualizada</span>
+                <span><ShieldCheck size={18} /><b>Ergonómico</b> Ajuste estable y cómodo</span>
+              </div>
+              <div className="clothing-note">
+                <Shirt size={27} />
+                <div><strong>¿Qué ropa debes traer?</strong><p>Una <b>camiseta negra ceñida de manga corta o media manga</b> y unas <b>mallas negras largas y ajustadas</b>. Deben ser prendas cómodas, transpirables y sin cremalleras, botones ni piezas metálicas que puedan quedar bajo el traje. Esta primera capa favorece el contacto uniforme, el movimiento y la higiene durante la sesión.</p></div>
+              </div>
+            </div>
+            <figure className="wiemspro-visual"><img src="tecnologia-wiemspro.webp" alt="Traje profesional Wiemspro y sus principales características" loading="lazy" /><figcaption>Tecnología Wiemspro utilizada en IMPULSA FIT</figcaption></figure>
+          </div>
+
+          <div className="process" aria-label="Cómo es una sesión">
+            <div><span>01</span><strong>Valoramos</strong><p>Objetivos, experiencia y posibles contraindicaciones.</p></div>
+            <div><span>02</span><strong>Ajustamos</strong><p>El traje Wiemspro y la intensidad de cada zona.</p></div>
+            <div><span>03</span><strong>Entrenamos</strong><p>Movimientos activos con corrección y feedback continuo.</p></div>
+            <div><span>04</span><strong>Progresamos</strong><p>Sin prisas: el cuerpo necesita una fase de adaptación.</p></div>
+          </div>
+
+          <div className="benefits-block" id="beneficios">
           <div className="section-heading">
             <div><div className="section-kicker"><BadgeCheck size={18} /> BENEFICIOS CON RESPALDO CIENTÍFICO</div><h2>Más estímulo.<br /><span>Tiempo bien aprovechado.</span></h2></div>
-            <p>La WB-EMS combina contracciones voluntarias con impulsos individualizados para activar varios grupos musculares a la vez. El resultado es un entrenamiento global, intenso y adaptable.</p>
+            <p>La WB-EMS combina contracciones voluntarias e impulsos individualizados. Puede ser una herramienta eficaz para ganar fuerza, mantener masa muscular y mejorar la función física, siempre dentro de un programa supervisado.</p>
           </div>
           <div className="evidence-grid">
             {evidence.map(({ icon: Icon, title, text }) => <article className="evidence-card" key={title}><Icon size={27} /><h3>{title}</h3><p>{text}</p></article>)}
@@ -107,10 +125,11 @@ export default function Home() {
             <Clock3 className="time-icon" size={56} />
           </div>
           <div className="truth-grid">
-            <div><Check size={20} /><p><strong>Eficiente:</strong> trabaja varios grupos musculares de forma simultánea.</p></div>
-            <div><Check size={20} /><p><strong>Personalizada:</strong> cada zona se ajusta a tu sensibilidad y nivel.</p></div>
-            <div><Check size={20} /><p><strong>Versátil:</strong> encaja tanto al empezar como para complementar otra rutina.</p></div>
-            <div><Check size={20} /><p><strong>Progresiva:</strong> el estímulo evoluciona contigo sesión a sesión.</p></div>
+            <div><Check size={20} /><p><strong>Eficiente:</strong> trabaja de forma simultánea piernas, glúteos, abdomen, espalda, pecho y brazos.</p></div>
+            <div><Check size={20} /><p><strong>Personalizada:</strong> regulamos cada grupo muscular de forma independiente según tu percepción y tolerancia.</p></div>
+            <div><Check size={20} /><p><strong>Versátil:</strong> puede servir para comenzar, complementar tu entrenamiento o reducir la carga externa.</p></div>
+            <div><Check size={20} /><p><strong>Progresiva:</strong> la intensidad aumenta gradualmente; más impulso no significa automáticamente mejores resultados.</p></div>
+          </div>
           </div>
         </div>
       </section>
@@ -123,12 +142,11 @@ export default function Home() {
           </div>
           <div className="facility-gallery" aria-label="Galería de IMPULSA FIT">
             {studioGallery.map((item, index) => (
-              <a className={`facility-photo facility-photo-${index + 1}`} href={item.href} target="_blank" rel="noreferrer" key={item.title} aria-label={`${item.title}. Ver publicación en Instagram`}>
+              <figure className={`facility-photo facility-photo-${index + 1}`} key={item.title}>
                 <img src={item.image} alt={`${item.title} en IMPULSA FIT Huelva`} loading="lazy" />
                 <span className="facility-glow" aria-hidden="true" />
-                <span className="facility-caption"><small>0{index + 1} · @impulsafit_huelva</small><strong>{item.title}</strong><em>{item.text}</em></span>
-                <ArrowRight className="facility-arrow" size={22} />
-              </a>
+                <figcaption className="facility-caption"><small>0{index + 1} · IMPULSA FIT HUELVA</small><strong>{item.title}</strong><em>{item.text}</em></figcaption>
+              </figure>
             ))}
           </div>
           <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
@@ -193,10 +211,11 @@ export default function Home() {
           <li><a href="https://doi.org/10.3389/fphys.2018.00573" target="_blank" rel="noreferrer">Revisión sistemática en adultos no deportistas</a></li>
           <li><a href="https://doi.org/10.3390/jfmk10030243" target="_blank" rel="noreferrer">WB-EMS frente a entrenamiento de fuerza: estudio comparativo (2025)</a></li>
           <li><a href="https://pubmed.ncbi.nlm.nih.gov/27034699/" target="_blank" rel="noreferrer">WB-EMS frente a entrenamiento HIT en hombres de mediana edad</a></li>
+          <li><a href="https://wiemspro.com/en/electrostimulation-suit/" target="_blank" rel="noreferrer">Características y recomendaciones del traje Wiemspro</a></li>
         </ol>
       </section>
 
-      <footer><div className="wrap footer-inner"><a className="brand" href="#inicio"><span>IMPULSA<span>FIT</span></span></a><p>EMS Performance Studio · Huelva</p><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
+      <footer><div className="wrap footer-inner"><a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT" /></a><p>EMS Performance Studio · Huelva</p><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
     </main>
   );
 }
