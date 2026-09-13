@@ -115,6 +115,7 @@ export default function EmsForm() {
     const consent = await PDFDocument.load(consentBytes);
     const anamnesis = await PDFDocument.load(anamnesisBytes);
     const font = await consent.embedFont(StandardFonts.Helvetica);
+    const boldFont = await consent.embedFont(StandardFonts.HelveticaBold);
     const pdfForm = consent.getForm();
     const fullName = `${formData.get("nombre") || ""} ${formData.get("apellidos") || ""}`.trim();
     const date = new Date(String(formData.get("fecha")) + "T12:00:00");
@@ -142,16 +143,39 @@ export default function EmsForm() {
     const firstYs = [732.7, 681.6, 630.6, 579.6, 528.6, 477.6, 426.5, 375.5, 324.5, 273.5, 222.4, 171.4];
     const secondYs = [775.2, 724.2];
     questions.forEach((_, index) => {
-      const x = answers[index] === "si" ? 91 : 176;
+      const x = answers[index] === "si" ? 95 : 180;
       const page = index < 12 ? first : second;
       const y = index < 12 ? firstYs[index] : secondYs[index - 12];
-      page.drawText("X", { x, y, size: 13, font, color: rgb(0, .25, .35) });
+      page.drawCircle({ x, y, size: 9.5, color: rgb(0, .47, .58), borderColor: rgb(0, .2, .25), borderWidth: 1.2 });
+      page.drawText("X", { x: x - 4.2, y: y - 4.6, size: 11, font: boldFont, color: rgb(1, 1, 1) });
     });
     second.drawText(fullName, { x: 174, y: 686, size: 10, font, color: rgb(.05, .08, .1) });
     second.drawText(String(formData.get("fecha") || ""), { x: 103, y: 652, size: 10, font, color: rgb(.05, .08, .1) });
     const anamnesisPng = await consent.embedPng(anamnesisSignature);
     second.drawImage(anamnesisPng, { x: 170, y: 592, width: 280, height: 42 });
     second.drawText(`Firmado online: ${new Date().toLocaleString("es-ES")}`, { x: 170, y: 580, size: 7, font, color: rgb(.25, .25, .25) });
+
+    const answersPage = consent.addPage([595.28, 841.89]);
+    answersPage.drawText("RESUMEN DE RESPUESTAS", { x: 45, y: 790, size: 18, font: boldFont, color: rgb(0, .3, .38) });
+    answersPage.drawText("Este resumen refleja las respuestas seleccionadas en el formulario online.", { x: 45, y: 768, size: 9, font, color: rgb(.25, .3, .32) });
+    questions.forEach((question, index) => {
+      const rowTop = 738 - (index * 48);
+      if (index % 2 === 0) answersPage.drawRectangle({ x: 40, y: rowTop - 35, width: 515, height: 43, color: rgb(.95, .98, .985) });
+      answersPage.drawText(`${index + 1}.`, { x: 48, y: rowTop - 8, size: 9, font: boldFont, color: rgb(0, .3, .38) });
+      const words = question.split(/\s+/);
+      const wrapped: string[] = [];
+      let current = "";
+      for (const word of words) {
+        const candidate = current ? `${current} ${word}` : word;
+        if (font.widthOfTextAtSize(candidate, 8.2) <= 395) current = candidate;
+        else { if (current) wrapped.push(current); current = word; }
+      }
+      if (current) wrapped.push(current);
+      wrapped.slice(0, 2).forEach((line, lineIndex) => answersPage.drawText(line, { x: 70, y: rowTop - 7 - (lineIndex * 11), size: 8.2, font, color: rgb(.1, .14, .16) }));
+      const selectedYes = answers[index] === "si";
+      answersPage.drawRectangle({ x: 498, y: rowTop - 22, width: 48, height: 24, color: selectedYes ? rgb(0, .47, .58) : rgb(.22, .3, .34) });
+      answersPage.drawText(selectedYes ? "SI" : "NO", { x: selectedYes ? 516 : 513, y: rowTop - 15, size: 9, font: boldFont, color: rgb(1, 1, 1) });
+    });
 
     const additionalInfo = String(formData.get("otraInformacion") || "").trim();
     const additionalPage = consent.addPage([595.28, 841.89]);
@@ -182,12 +206,13 @@ export default function EmsForm() {
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus("");
     if (Object.values(answers).some((answer) => !answer)) return setStatus("Responde las 14 preguntas de preparación.");
     if (!accepted || !consentSignature || !anamnesisSignature) return setStatus("Debes aceptar el consentimiento y firmar los dos documentos.");
     setBusy(true);
     try {
-      const data = new FormData(event.currentTarget);
+      const data = new FormData(form);
       const bytes = await buildPdf(data);
       const fullName = `${data.get("nombre") || ""} ${data.get("apellidos") || ""}`.trim();
       const response = await fetch(emailEndpoint(), {
@@ -204,7 +229,7 @@ export default function EmsForm() {
       });
       const result = await response.json().catch(() => ({})) as { error?: string };
       if (!response.ok) throw new Error(result.error || "No se pudo enviar el formulario");
-      event.currentTarget.reset();
+      form.reset();
       setAnswers(Object.fromEntries(questions.map((_, index) => [index, ""])));
       setAccepted(false);
       setConsentSignature("");
