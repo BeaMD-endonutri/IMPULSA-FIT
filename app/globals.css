@@ -214,6 +214,12 @@ h2 { font-size: clamp(2.7rem, 5.6vw, 5.1rem); }
 .consent-summary h2 { margin: 0 0 14px; font-size: 1.45rem; line-height: 1.15; }
 .consent-summary p { color: #a8b8be; line-height: 1.65; }
 .consent-summary a { display: inline-block; margin-top: 8px; color: #28dff6; font-weight: 900; text-decoration: underline; text-underline-offset: 4px; }
+.consent-document { margin-top: 20px; border: 1px solid #35505b; background: #071016; }
+.consent-document summary { padding: 18px; color: #28dff6; font-weight: 900; cursor: pointer; list-style-position: inside; }
+.consent-document[open] summary { border-bottom: 1px solid #35505b; }
+.consent-pages { display: grid; gap: 14px; padding: 14px; }
+.consent-pages img { display: block; width: 100%; height: auto; background: white; border: 1px solid #50616a; }
+.consent-actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 10px; }
 .acceptance { display: flex; gap: 12px; margin-top: 20px; padding: 18px; border: 1px solid #334650; color: #d0dade; line-height: 1.5; cursor: pointer; }
 .acceptance input { width: 20px; height: 20px; flex: none; accent-color: #28dff6; }
 .signature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
