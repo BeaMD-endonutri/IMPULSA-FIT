@@ -30,6 +30,12 @@ function randomBytes(length: number): Uint8Array {
   return bytes;
 }
 
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  const copy = new Uint8Array(bytes.byteLength);
+  copy.set(bytes);
+  return copy.buffer;
+}
+
 export function randomPassword(length = 14): string {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
   const bytes = randomBytes(length);
@@ -38,8 +44,8 @@ export function randomPassword(length = 14): string {
 
 export async function hashPassword(password: string, salt?: string): Promise<{ hash: string; salt: string }> {
   const saltBytes = salt ? base64ToBytes(salt) : randomBytes(16);
-  const key = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: saltBytes, iterations: 120_000 }, key, 256);
+  const key = await crypto.subtle.importKey("raw", toArrayBuffer(encoder.encode(password)), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: toArrayBuffer(saltBytes), iterations: 120_000 }, key, 256);
   return { hash: bytesToBase64(new Uint8Array(bits)), salt: bytesToBase64(saltBytes) };
 }
 
@@ -52,7 +58,7 @@ export async function verifyPassword(password: string, salt: string, expectedHas
 }
 
 async function sha256(value: string): Promise<string> {
-  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(value));
+  const digest = await crypto.subtle.digest("SHA-256", toArrayBuffer(encoder.encode(value)));
   return bytesToBase64(new Uint8Array(digest));
 }
 
