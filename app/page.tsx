@@ -31,6 +31,12 @@ const clientVideos = [
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-02.mp4", poster: "cliente-02-poster.webp", title: "Progresión guiada", text: "Cada ejercicio se adapta al nivel de la persona" },
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-03.mp4", poster: "cliente-03-poster.webp", title: "Trabajo específico", text: "Estímulo muscular y movimiento en una misma sesión" },
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-04.mp4", poster: "cliente-04-poster.webp", title: "Energía IMPULSA FIT", text: "Acompañamiento cercano durante todo el entrenamiento" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/cliente-05.mp4", poster: "cliente-05-poster.webp", title: "Constancia y actitud", text: "Una sesión completa, activa y ajustada a cada objetivo" },
+];
+
+const wiemsproVideos = [
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-chaleco-arcoiris.mp4", poster: "video-chaleco-arcoiris-poster.webp", title: "Activa tu mejor versión", text: "Tecnología, precisión y diseño Wiemspro" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-chaleco.mp4", poster: "video-chaleco-poster.webp", title: "El impulso toma forma", text: "El traje que acompaña cada movimiento" },
 ];
 
 export default function Home() {
@@ -49,6 +55,15 @@ export default function Home() {
           <div><a href="#que-es">Tecnología Wiemspro</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#clientes">Nuestros clientes</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
+
+      <section className="brand-opener" aria-label="Presentación de IMPULSA FIT">
+        <div className="brand-opener-aura" aria-hidden="true" />
+        <video className="brand-opener-video" autoPlay muted loop playsInline preload="metadata" poster="video-logo-poster.webp" aria-label="Animación del logo de IMPULSA FIT">
+          <source src="https://impulsa-fit-huelva.bea-md.chatgpt.site/video-logo.mp4" type="video/mp4" />
+        </video>
+        <div className="brand-opener-fade" aria-hidden="true" />
+        <a className="brand-opener-scroll" href="#inicio"><span>Descubre IMPULSA FIT</span><ArrowRight size={18} /></a>
+      </section>
 
       <section className="hero" id="inicio">
         <div className="hero-media" style={{ backgroundImage: "url('hero-ems-power.webp')" }} aria-hidden="true" /><div className="hero-shade" aria-hidden="true" /><div className="hero-grid" aria-hidden="true" />
@@ -109,6 +124,21 @@ export default function Home() {
               </div>
             </div>
             <figure className="wiemspro-visual"><img src="tecnologia-wiemspro.webp" alt="Traje profesional Wiemspro y sus principales características" loading="lazy" /><figcaption>Tecnología Wiemspro utilizada en IMPULSA FIT</figcaption></figure>
+          </div>
+
+          <div className="wiemspro-video-showcase">
+            <div className="wiemspro-video-intro"><p className="eyebrow">WIEMSPRO EN ACCIÓN</p><h3>Conoce el equipo.<br /><span>Descubre el impulso.</span></h3><p>Dos miradas al sistema con el que personalizamos cada sesión en IMPULSA FIT.</p></div>
+            <div className="wiemspro-video-grid">
+              {wiemsproVideos.map((item, index) => (
+                <figure className="wiemspro-video-card" key={item.video}>
+                  <video controls playsInline preload="metadata" poster={item.poster} aria-label={item.title}>
+                    <source src={item.video} type="video/mp4" />
+                    Tu navegador no puede reproducir este vídeo.
+                  </video>
+                  <figcaption><span>0{index + 1}</span><div><strong>{item.title}</strong><small>{item.text}</small></div></figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
 
           <div className="process" aria-label="Cómo es una sesión">
