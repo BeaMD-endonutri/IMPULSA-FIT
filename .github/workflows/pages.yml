@@ -29,6 +29,8 @@ jobs:
           cache: pnpm
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
+      - name: Preparar versión estática
+        run: rm -rf app/api
       - name: Generar web estática
         run: pnpm exec next build
       - name: Configurar GitHub Pages

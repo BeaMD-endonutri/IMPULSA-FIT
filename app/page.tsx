@@ -3,6 +3,7 @@ import {
   AtSign, Camera, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
   TimerReset, UserRoundCheck,
 } from "lucide-react";
+import { ReviewsSection } from "@/components/reviews-section";
 
 const evidence = [
   { icon: Dumbbell, title: "Fuerza y función muscular", text: "La WB-EMS activa simultáneamente grandes grupos musculares y puede favorecer mejoras de fuerza, rendimiento funcional y calidad muscular con una programación constante." },
@@ -34,12 +35,12 @@ export default function Home() {
           <span>IMPULSA<span>FIT</span></span>
         </a>
         <nav aria-label="Navegación principal">
-          <a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a>
+          <a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#resenas">Reseñas</a>
         </nav>
         <a className="header-cta" href="#contacto">Quiero probarlo <ArrowRight size={17} /></a>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú"><Menu size={24} /></summary>
-          <div><a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#contacto">Contacto</a></div>
+          <div><a href="#que-es">Qué es</a><a href="#beneficios">Beneficios</a><a href="#para-quien">Para quién</a><a href="#instalaciones">Instalaciones</a><a href="#seguridad">Seguridad</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></div>
         </details>
       </header>
 
@@ -163,18 +164,21 @@ export default function Home() {
         </div>
       </section>
 
+      <ReviewsSection />
+
       <section className="contact wrap" id="contacto">
         <div className="contact-card">
           <div className="contact-copy">
             <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
-            <h2>¿Te gustaría<br /><span>probar una sesión?</span></h2>
+            <h2>¿Te gustaría<br /><span>probar una sesión <strong className="free-highlight">GRATIS?</strong></span></h2>
             <p>Completa online el formulario de valoración y el consentimiento informado, firma ambos desde el móvil y envíanos un único PDF con toda la información.</p>
             <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas y firmas los dos documentos. Al finalizar, el PDF firmado llega directamente a nuestro equipo.</span></div>
           </div>
-          <div className="preview-form" aria-label="Acceso al formulario online">
-            <label>Nombre y apellidos<input type="text" placeholder="Tu nombre" disabled /></label>
-            <div className="form-row"><label>Teléfono<input type="tel" placeholder="600 000 000" disabled /></label><label>Objetivo<select disabled defaultValue=""><option value="" disabled>Selecciona</option></select></label></div>
-            <label>Cuéntanos brevemente<textarea placeholder="¿Qué buscas con el entrenamiento EMS?" disabled /></label>
+          <div className="preview-form contact-actions-panel" aria-label="Contacto y acceso al formulario online">
+            <div className="whatsapp-qr">
+              <div className="qr-frame"><img src="qr-whatsapp.jpeg" alt="Código QR para contactar con IMPULSA FIT por WhatsApp" /></div>
+              <div><strong>Escríbenos por WhatsApp</strong><p>Escanea el QR con la cámara del móvil para abrir directamente la conversación.</p></div>
+            </div>
             <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
             <a className="consent-download" href="documentos/Consentimiento_Informado_EMS.pdf" target="_blank" rel="noreferrer"><FileSignature size={17} /> Leer consentimiento informado (PDF)</a>
             <small>Envío seguro del PDF cumplimentado y firmado.</small>
