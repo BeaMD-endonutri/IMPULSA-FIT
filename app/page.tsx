@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, Clapperboard, FileSignature, Headphones, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
+  AtSign, Camera, Clapperboard, FileSignature, Headphones, HeartPulse, LockKeyhole, Mail, Menu, ShieldCheck, Sparkles,
   Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
@@ -298,7 +298,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <footer><div className="wrap footer-inner"><a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT" /></a><p>EMS Performance Studio · Huelva</p><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
+      <footer><div className="wrap footer-inner"><a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="logo-impulsa-fit.webp" alt="IMPULSA FIT" /></a><p>EMS Performance Studio · Huelva</p><div className="footer-private-links"><a href="cliente"><LockKeyhole size={17} /> Área clientes</a><a href="profesional"><ShieldCheck size={17} /> Área profesional</a></div><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
     </main>
   );
 }
