@@ -30,9 +30,9 @@ a { color: inherit; text-decoration: none; }
 .brand-opener-scroll svg { color: #28dff6; transform: rotate(90deg); }
 
 .site-header { position: fixed; inset: 0 0 auto; z-index: 30; height: 76px; display: flex; align-items: center; padding: 0 max(24px, calc((100vw - 1180px)/2)); border-bottom: 1px solid rgb(255 255 255 / 10%); background: rgb(5 9 13 / 82%); backdrop-filter: blur(18px); }
-.brand { display: flex; align-items: center; gap: 10px; font-family: "Arial Narrow", Arial, sans-serif; font-weight: 900; letter-spacing: -.04em; font-size: 1.35rem; white-space: nowrap; }
+.brand { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; isolation: isolate; font-family: "Arial Narrow", Arial, sans-serif; font-weight: 900; letter-spacing: -.04em; font-size: 1.35rem; white-space: nowrap; }
 .brand > span:last-child span { color: #28dff6; }
-.brand-logo { display: block; width: 198px; height: 58px; object-fit: contain; }
+.brand-logo { position: relative; z-index: 1; display: block; width: 198px; height: 58px; object-fit: contain; filter: drop-shadow(0 0 7px rgb(40 223 246 / 16%)); }
 .footer-brand .brand-logo { width: 175px; height: 62px; }
 .pulse-mark { width: 46px; color: #28dff6; }
 .pulse-mark svg { display: block; width: 100%; }

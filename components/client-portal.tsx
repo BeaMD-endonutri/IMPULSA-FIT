@@ -30,11 +30,11 @@ export function ClientPortal() {
   async function changePassword(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setBusy(true); setNotice(""); const form = event.currentTarget; const values = new FormData(form); const response = await fetch("/api/privado/contrasena", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ role: "client", currentPassword: values.get("currentPassword"), newPassword: values.get("newPassword") }) }); const body = await response.json() as { error?: string }; if (response.ok) { setMustChangePassword(false); setNotice("Contraseña actualizada correctamente."); form.reset(); } else setNotice(body.error || "No se ha podido cambiar la contraseña."); setBusy(false); }
   const total = useMemo(() => data?.bonuses.reduce((sum, bonus) => sum + Number(bonus.remaining_sessions), 0) ?? 0, [data]);
 
-  if (checking) return <main className="private-loading"><img src="/logo-impulsa-fit.png" alt="IMPULSA FIT" /><span>Cargando tu área…</span></main>;
+  if (checking) return <main className="private-loading"><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><span>Cargando tu área…</span></main>;
   if (!authenticated) return <PrivateLogin role="client" onSuccess={(session) => { setAuthenticated(true); setName(session.name); setMustChangePassword(session.mustChangePassword); void load(); }} />;
 
   return <main className="client-app">
-    <header className="client-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit.png" alt="IMPULSA FIT" /><button onClick={logout}><LogOut size={17} /> Salir</button></header>
+    <header className="client-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><button onClick={logout}><LogOut size={17} /> Salir</button></header>
     <div className="client-shell">
       <section className="client-welcome"><div><p>MI ÁREA PRIVADA</p><h1>Hola, <span>{name.split(" ")[0]}.</span></h1><small>Aquí puedes consultar tus bonos y el historial de sesiones.</small></div><div className="client-total"><TicketCheck size={28} /><strong>{total}</strong><span>sesiones disponibles</span></div></section>
       {notice && <div className="private-notice"><Check size={18} /> {notice}<button onClick={() => setNotice("")}>×</button></div>}

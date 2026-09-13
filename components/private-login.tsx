@@ -27,7 +27,7 @@ export function PrivateLogin({ role, onSuccess }: { role: LoginRole; onSuccess: 
   return <main className="private-login-page">
     <Link className="private-back" href="/"><ArrowLeft size={18} /> Volver a IMPULSA FIT</Link>
     <section className="private-login-card">
-      <img src="/logo-impulsa-fit.png" alt="IMPULSA FIT" />
+      <img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" />
       <div className="private-login-icon"><LockKeyhole size={28} /></div>
       <p className="eyebrow">ACCESO SEGURO</p>
       <h1>{role === "professional" ? "Área profesional" : "Área de clientes"}</h1>

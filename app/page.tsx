@@ -55,7 +55,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="IMPULSA FIT, inicio">
-          <img className="brand-logo" src="logo-impulsa-fit.png" alt="IMPULSA FIT · EMS Performance Studio" />
+          <img className="brand-logo" src="logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT · EMS Performance Studio" />
         </a>
         <nav aria-label="Navegación principal">
           <a href="#que-es">Tecnología Wiemspro</a><a href="#instalaciones">Instalaciones</a><a href="#donde-estamos">Dónde estamos</a><a href="#clientes">Nuestros clientes</a><a href="#resenas">Reseñas</a>
@@ -329,7 +329,7 @@ export default function Home() {
         </ol>
       </section>
 
-      <footer><div className="wrap footer-inner"><a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="logo-impulsa-fit.png" alt="IMPULSA FIT" /></a><p>EMS Performance Studio · Huelva</p><div className="footer-private-links"><a href="cliente"><LockKeyhole size={17} /> Área clientes</a><a href="profesional"><ShieldCheck size={17} /> Área profesional</a></div><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
+      <footer><div className="wrap footer-inner"><a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /></a><p>EMS Performance Studio · Huelva</p><div className="footer-private-links"><a href="cliente"><LockKeyhole size={17} /> Área clientes</a><a href="profesional"><ShieldCheck size={17} /> Área profesional</a></div><a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer" aria-label="Instagram de IMPULSA FIT"><AtSign size={20} /> @impulsafit_huelva</a></div></footer>
     </main>
   );
 }
