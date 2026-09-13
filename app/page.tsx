@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, Clapperboard, FileSignature, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
+  AtSign, Camera, Clapperboard, FileSignature, Headphones, HeartPulse, Mail, Menu, ShieldCheck, Sparkles,
   Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
@@ -24,6 +24,11 @@ const studioGallery = [
   { image: "estudio-zona-2.webp", title: "Espacio de entrenamiento", text: "Amplitud, privacidad y atención cercana" },
   { image: "estudio-zona-3.webp", title: "Tecnología integrada", text: "Control inalámbrico durante el ejercicio" },
   { image: "estudio-zona-4.webp", title: "Identidad IMPULSA FIT", text: "Un entorno diseñado para moverte" },
+];
+
+const facilityVideos = [
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-instalaciones-01.mp4", poster: "video-instalaciones-01-poster.webp", title: "Descubre el estudio", text: "Un recorrido dinámico por IMPULSA FIT" },
+  { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-instalaciones-02.mp4", poster: "video-instalaciones-02-poster.webp", title: "Tu zona de entrenamiento", text: "Tecnología y movimiento en un espacio propio" },
 ];
 
 const clientVideos = [
@@ -186,6 +191,24 @@ export default function Home() {
               </figure>
             ))}
           </div>
+          <div className="facility-video-section">
+            <div className="facility-video-heading"><p className="eyebrow">EL ESTUDIO EN MOVIMIENTO</p><h3>Entra en<br /><span>IMPULSA FIT.</span></h3></div>
+            <div className="facility-video-grid">
+              {facilityVideos.map((item, index) => (
+                <figure className="facility-video-card" key={item.video}>
+                  <video controls playsInline preload="metadata" poster={item.poster} aria-label={item.title}>
+                    <source src={item.video} type="video/mp4" />
+                    Tu navegador no puede reproducir este vídeo.
+                  </video>
+                  <figcaption><span>0{index + 1}</span><div><strong>{item.title}</strong><small>{item.text}</small></div></figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+          <aside className="relaxation-feature">
+            <div className="relaxation-icon"><Headphones size={34} /></div>
+            <div><p className="eyebrow">EL ÚLTIMO IMPULSO ES PARAR</p><h3>Finalizamos con una fase de relajación.</h3><p>Al terminar el entrenamiento bajamos el ritmo y reservamos unos minutos para cerrar la sesión con calma. Incorporamos <strong>cascos con cancelación de ruido</strong> para favorecer un mayor bienestar, aislamiento del entorno y conexión con ese momento de recuperación.</p></div>
+          </aside>
           <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
         </div>
       </section>
