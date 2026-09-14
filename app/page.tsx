@@ -1,6 +1,6 @@
 import {
   Activity, ArrowRight, BadgeCheck, Bolt, Check, Clock3, Dumbbell,
-  AtSign, Camera, Clapperboard, ExternalLink, FileSignature, Globe2, Headphones, HeartPulse, LockKeyhole, Mail, MapPin, Menu, Phone, ShieldCheck, Sparkles,
+  AtSign, Camera, Clapperboard, ExternalLink, FileSignature, Globe2, Headphones, HeartPulse, LockKeyhole, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Sparkles,
   Shirt, TimerReset, UserRoundCheck, Wifi,
 } from "lucide-react";
 import { ReviewsSection } from "@/components/reviews-section";
@@ -71,16 +71,45 @@ export default function Home() {
         </details>
       </header>
 
-      <section className="brand-opener" aria-label="Presentación de IMPULSA FIT">
+      <section className="brand-opener" id="inicio" aria-label="Presentación y contacto de IMPULSA FIT">
         <div className="brand-opener-aura" aria-hidden="true" />
-        <video className="brand-opener-video" autoPlay muted loop playsInline preload="metadata" poster="video-logo-poster.webp" aria-label="Animación del logo de IMPULSA FIT">
-          <source src="https://impulsa-fit-huelva.bea-md.chatgpt.site/video-logo.mp4" type="video/mp4" />
-        </video>
+        <div className="opener-main wrap">
+          <div className="opener-video-shell">
+            <video className="brand-opener-video" autoPlay muted loop playsInline preload="metadata" poster="video-logo-poster.webp" aria-label="Animación del logo de IMPULSA FIT">
+              <source src="https://impulsa-fit-huelva.bea-md.chatgpt.site/video-logo.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="opener-contact-copy" id="contacto">
+            <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
+            <h2>¿Te gustaría<br /><span>probar una sesión <strong className="free-highlight">GRATIS?</strong></span></h2>
+            <p>Cuéntanos tu objetivo y reserva una primera sesión para conocer IMPULSA FIT, probar la experiencia y resolver tus dudas con nuestro equipo.</p>
+          </div>
+        </div>
         <div className="brand-opener-fade" aria-hidden="true" />
-        <a className="brand-opener-scroll" href="#inicio"><span>Descubre IMPULSA FIT</span><ArrowRight size={18} /></a>
+        <div className="opener-contact-details wrap" aria-label="Datos de contacto de IMPULSA FIT">
+          <div className="opener-contact-links">
+            <a href="tel:+34679719109"><Phone size={20} /><span><small>TELÉFONO EMS</small>679 71 91 09</span></a>
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd11d1d2443dd84d:0xc09dc2ca9aca6448?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noreferrer"><MapPin size={20} /><span><small>DÓNDE ESTAMOS</small>Av. Escultora Miss Whitney, 9 · Huelva</span></a>
+            <a href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={20} /><span><small>INSTAGRAM</small>@impulsafit_huelva</span></a>
+          </div>
+          <div className="opener-qr-contact">
+            <div className="qr-frame"><img src="qr-whatsapp.jpeg" alt="Código QR para contactar con IMPULSA FIT por WhatsApp" /></div>
+            <div>
+              <strong>WhatsApp directo</strong>
+              <p>Escanea el QR o usa el botón. Ambas opciones abren el contacto de IMPULSA FIT.</p>
+              <a className="opener-whatsapp-button compact" href="https://wa.me/34679719109?text=Hola%2C%20me%20gustar%C3%ADa%20probar%20una%20sesi%C3%B3n%20gratis%20en%20IMPULSA%20FIT." target="_blank" rel="noreferrer"><MessageCircle size={19} /> Abrir WhatsApp</a>
+            </div>
+          </div>
+          <div className="opener-form-actions">
+            <p><strong>¿Quieres avanzar con la valoración?</strong> Completa y firma online el formulario y el consentimiento informado.</p>
+            <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
+            <a className="consent-download" href="documentos/Consentimiento_Informado_EMS.pdf" target="_blank" rel="noreferrer"><FileSignature size={17} /> Leer consentimiento informado (PDF)</a>
+          </div>
+        </div>
+        <a className="brand-opener-scroll" href="#experiencia"><span>Descubre IMPULSA FIT</span><ArrowRight size={18} /></a>
       </section>
 
-      <section className="hero" id="inicio">
+      <section className="hero" id="experiencia">
         <div className="hero-media" style={{ backgroundImage: "url('hero-ems-power.webp')" }} aria-hidden="true" /><div className="hero-shade" aria-hidden="true" /><div className="hero-grid" aria-hidden="true" />
         <div className="hero-content wrap">
           <p className="eyebrow"><span /> EMS PERFORMANCE STUDIO · HUELVA</p>
@@ -301,26 +330,6 @@ export default function Home() {
       </section>
 
       <ReviewsSection />
-
-      <section className="contact wrap" id="contacto">
-        <div className="contact-card">
-          <div className="contact-copy">
-            <div className="section-kicker"><Mail size={18} /> CONTACTO</div>
-            <h2>¿Te gustaría<br /><span>probar una sesión <strong className="free-highlight">GRATIS?</strong></span></h2>
-            <p>Completa online el formulario de valoración y el consentimiento informado, firma ambos desde el móvil y envíanos un único PDF con toda la información.</p>
-            <div className="pending"><Bolt size={18} /><span><strong>Proceso sencillo</strong> Rellenas, revisas y firmas los dos documentos. Al finalizar, el PDF firmado llega directamente a nuestro equipo.</span></div>
-          </div>
-          <div className="preview-form contact-actions-panel" aria-label="Contacto y acceso al formulario online">
-            <div className="whatsapp-qr">
-              <div className="qr-frame"><img src="qr-whatsapp.jpeg" alt="Código QR para contactar con IMPULSA FIT por WhatsApp" /></div>
-              <div><strong>Escríbenos por WhatsApp</strong><p>Escanea el QR con la cámara del móvil para abrir directamente la conversación.</p></div>
-            </div>
-            <a className="form-launch" href="formulario">Abrir formulario y firmar online <ArrowRight size={18} /></a>
-            <a className="consent-download" href="documentos/Consentimiento_Informado_EMS.pdf" target="_blank" rel="noreferrer"><FileSignature size={17} /> Leer consentimiento informado (PDF)</a>
-            <small>Envío seguro del PDF cumplimentado y firmado.</small>
-          </div>
-        </div>
-      </section>
 
       <section className="sources wrap" aria-labelledby="fuentes-title">
         <div><p className="eyebrow">TRANSPARENCIA</p><h2 id="fuentes-title">Fuentes principales</h2></div>
