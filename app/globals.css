@@ -22,11 +22,31 @@ body { margin: 0; background: radial-gradient(circle at 50% 0%, #0b1e28 0, #070b
 a { color: inherit; text-decoration: none; }
 .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 
-.brand-opener { position: relative; min-height: min(92svh, 900px); display: grid; place-items: center; overflow: hidden; padding-top: 96px; background: #000; isolation: isolate; }
+.brand-opener { position: relative; display: grid; overflow: hidden; padding: 142px 0 110px; background: radial-gradient(circle at 25% 28%, rgb(22 189 222 / 14%), transparent 34%), #000; isolation: isolate; }
 .brand-opener-aura { position: absolute; z-index: -1; width: min(88vw, 900px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgb(22 189 222 / 18%), rgb(9 72 88 / 8%) 38%, transparent 68%); filter: blur(18px); }
-.brand-opener-video { display: block; width: auto; height: min(calc(92svh - 96px), 804px); max-width: min(100%, 620px); object-fit: contain; filter: saturate(1.05) contrast(1.04); }
-.brand-opener-fade { position: absolute; inset: auto 0 0; height: 28%; background: linear-gradient(transparent, #05090f); pointer-events: none; }
-.brand-opener-scroll { position: absolute; z-index: 2; left: 50%; bottom: 30px; display: flex; align-items: center; gap: 10px; padding: 11px 16px; border: 1px solid rgb(82 219 238 / 30%); background: rgb(3 12 16 / 58%); color: #bcecf2; font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(12px); transform: translateX(-50%); }
+.opener-main { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr); gap: 64px; align-items: center; }
+.opener-video-shell { min-width: 0; display: grid; place-items: center; border: 1px solid #173d48; background: radial-gradient(circle, rgb(40 223 246 / 9%), transparent 58%); box-shadow: 0 28px 80px rgb(0 0 0 / 48%); }
+.brand-opener-video { display: block; width: 100%; height: min(64svh, 650px); object-fit: contain; filter: saturate(1.05) contrast(1.04); }
+.opener-contact-copy { scroll-margin-top: 112px; }
+.opener-contact-copy h2 { margin: 18px 0 26px; font-size: clamp(3rem, 5.4vw, 5.3rem); }
+.opener-contact-copy > p { max-width: 560px; color: #aebec5; font-size: 1.04rem; line-height: 1.75; }
+.opener-whatsapp-button { width: fit-content; min-height: 54px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 27px; padding: 0 22px; border: 1px solid #32e46b; background: #25d366; color: #031208; font-weight: 900; box-shadow: 0 0 30px rgb(37 211 102 / 25%); transition: transform .2s, background .2s; }
+.opener-whatsapp-button:hover { transform: translateY(-2px); background: #54e884; }
+.opener-whatsapp-button.compact { min-height: 46px; margin-top: 16px; padding-inline: 17px; }
+.opener-contact-details { position: relative; z-index: 2; display: grid; grid-template-columns: .9fr 1.05fr 1.15fr; gap: 1px; margin-top: 48px; border: 1px solid #25444e; background: #25444e; box-shadow: 0 28px 70px rgb(0 0 0 / 32%); }
+.opener-contact-links, .opener-qr-contact, .opener-form-actions { min-width: 0; padding: 28px; background: #091217; }
+.opener-contact-links { display: grid; align-content: center; gap: 10px; }
+.opener-contact-links a { display: grid; grid-template-columns: 25px 1fr; gap: 12px; align-items: center; padding: 13px 14px; border: 1px solid #263f48; background: #0c1a20; color: #cfdbdf; overflow-wrap: anywhere; transition: border-color .2s, color .2s; }
+.opener-contact-links a:hover { border-color: #28dff6; color: white; }
+.opener-contact-links svg { color: #28dff6; }
+.opener-contact-links small { display: block; margin-bottom: 4px; color: #28dff6; font-size: .64rem; font-weight: 900; letter-spacing: .12em; }
+.opener-qr-contact { display: grid; grid-template-columns: 138px 1fr; gap: 20px; align-items: center; }
+.opener-qr-contact strong, .opener-form-actions strong { display: block; color: white; text-transform: uppercase; font: 900 1.08rem "Arial Narrow", Arial, sans-serif; }
+.opener-qr-contact p, .opener-form-actions p { margin: 8px 0 0; color: #93a7ae; font-size: .88rem; line-height: 1.55; }
+.opener-form-actions { display: flex; flex-direction: column; justify-content: center; }
+.opener-form-actions .form-launch { margin-top: 20px; }
+.brand-opener-fade { position: absolute; inset: auto 0 0; height: 18%; background: linear-gradient(transparent, #05090f); pointer-events: none; }
+.brand-opener-scroll { position: absolute; z-index: 3; left: 50%; bottom: 22px; display: flex; align-items: center; gap: 10px; padding: 11px 16px; border: 1px solid rgb(82 219 238 / 30%); background: rgb(3 12 16 / 72%); color: #bcecf2; font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(12px); transform: translateX(-50%); }
 .brand-opener-scroll svg { color: #28dff6; transform: rotate(90deg); }
 
 .site-header { position: fixed; inset: 0 0 auto; z-index: 30; height: 96px; display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: 35px 61px; align-items: center; padding: 0 max(24px, calc((100vw - 1180px)/2)); border-bottom: 1px solid rgb(255 255 255 / 10%); background: rgb(5 9 13 / 88%); backdrop-filter: blur(18px); }
@@ -604,7 +624,10 @@ footer { border-top: 1px solid #1d2931; background: #05080c; }
   .hero-media { background-position: 62% center; }
   .hero-shade { background: linear-gradient(90deg, #05090f 0%, rgb(5 9 15 / 86%) 60%, rgb(5 9 15 / 38%)), linear-gradient(0deg, #070b10 0%, transparent 35%); }
   .hero-copy { max-width: 520px; }
-  .intro-grid, .section-heading, .section-heading.compact, .safety-grid, .contact-card, .power-showcase-grid, .reviews-layout, .wiemspro-feature, .location-shell { grid-template-columns: 1fr; gap: 40px; }
+  .intro-grid, .section-heading, .section-heading.compact, .safety-grid, .contact-card, .power-showcase-grid, .reviews-layout, .wiemspro-feature, .location-shell, .opener-main { grid-template-columns: 1fr; gap: 40px; }
+  .brand-opener-video { height: min(58svh, 590px); }
+  .opener-contact-details { grid-template-columns: 1fr; }
+  .opener-qr-contact { grid-template-columns: 170px 1fr; }
   .condes-gallery { min-height: 560px; }
   .wiemspro-feature { padding: 32px; } .wiemspro-visual { width: min(520px, 100%); margin-inline: auto; }
   .wiemspro-video-showcase { grid-template-columns: 1fr; padding: 34px; }
@@ -646,7 +669,17 @@ footer { border-top: 1px solid #1d2931; background: #05080c; }
   .hero h1 { font-size: clamp(3rem, 15vw, 4.4rem); } .hero-points { gap: 12px 20px; }
   .intro, .profiles, .facilities, .clients, .contact, .science, .safety, .power-showcase, .reviews, .technology-combined, .location-section { padding-block: 76px; } h2 { font-size: 2.8rem; }
   .brand-logo { width: 165px; height: 50px; }
-  .brand-opener { min-height: 82svh; padding-top: 66px; } .brand-opener-video { height: min(calc(82svh - 66px), 720px); max-width: 100%; } .brand-opener-scroll { bottom: 18px; white-space: nowrap; }
+  .brand-opener { min-height: auto; padding: 96px 0 104px; }
+  .brand-opener-video { height: min(52svh, 520px); max-width: 100%; }
+  .opener-main { gap: 34px; }
+  .opener-contact-copy h2 { font-size: clamp(2.9rem, 14vw, 4.25rem); }
+  .opener-whatsapp-button { width: 100%; }
+  .opener-contact-details { margin-top: 36px; }
+  .opener-contact-links, .opener-qr-contact, .opener-form-actions { padding: 22px 18px; }
+  .opener-qr-contact { grid-template-columns: 1fr; text-align: center; }
+  .opener-qr-contact .qr-frame { width: min(210px, 100%); margin-inline: auto; }
+  .opener-whatsapp-button.compact { margin-inline: auto; }
+  .brand-opener-scroll { bottom: 16px; white-space: nowrap; }
   .wiemspro-feature { margin-top: 42px; padding: 24px 18px; } .wiemspro-points, .evidence-grid { grid-template-columns: 1fr; } .benefits-block { margin-top: 78px; padding-top: 70px; }
   .wiemspro-video-showcase { margin-top: 44px; padding: 26px 16px; gap: 30px; } .wiemspro-video-grid { gap: 10px; } .wiemspro-video-card figcaption { grid-template-columns: 1fr; gap: 6px; padding: 12px 10px; } .wiemspro-video-card figcaption small { display: none; }
   .power-images { min-height: 480px; }
