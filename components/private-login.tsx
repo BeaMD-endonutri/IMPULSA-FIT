@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Eye, EyeOff, LockKeyhole, LogIn } from "lucide-react";
 
 export type LoginRole = "professional" | "client";
+const publicWebsiteUrl = "https://beamd-endonutri.github.io/IMPULSA-FIT/";
 
 export function PrivateLogin({ role, onSuccess }: { role: LoginRole; onSuccess: (data: { name: string; mustChangePassword: boolean }) => void }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ export function PrivateLogin({ role, onSuccess }: { role: LoginRole; onSuccess: 
   }
 
   return <main className="private-login-page">
-    <Link className="private-back" href="/"><ArrowLeft size={18} /> Volver a IMPULSA FIT</Link>
+    <Link className="private-back" href={publicWebsiteUrl}><ArrowLeft size={18} /> Volver a IMPULSA FIT</Link>
     <section className="private-login-card">
       <img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" />
       <div className="private-login-icon"><LockKeyhole size={28} /></div>

@@ -7,6 +7,7 @@ import { PrivateLogin } from "@/components/private-login";
 
 type ClientData = { client: { first_name: string; last_name: string; email: string; phone?: string | null; must_change_password: number }; bonuses: Array<{ id: number; name: string; initial_sessions: number; remaining_sessions: number; expires_at?: number | null; status: string; created_at: number }>; movements: Array<{ id: number; bonus_name: string; delta: number; reason: string; created_at: number }>; appointments: Array<{ id: number; starts_at: number; ends_at: number; status: string; notes?: string | null; bonus_name: string }> };
 const formatDate = (value?: number | null) => value ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "long", year: "numeric" }).format(new Date(value)) : "Sin caducidad";
+const publicWebsiteUrl = "https://beamd-endonutri.github.io/IMPULSA-FIT/";
 
 export function ClientPortal() {
   const [checking, setChecking] = useState(true);
@@ -34,7 +35,7 @@ export function ClientPortal() {
   if (!authenticated) return <PrivateLogin role="client" onSuccess={(session) => { setAuthenticated(true); setName(session.name); setMustChangePassword(session.mustChangePassword); void load(); }} />;
 
   return <main className="client-app">
-    <header className="client-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><button onClick={logout}><LogOut size={17} /> Salir</button></header>
+    <header className="client-topbar"><Link href={publicWebsiteUrl}><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><button onClick={logout}><LogOut size={17} /> Salir</button></header>
     <div className="client-shell">
       <section className="client-welcome"><div><p>MI ÁREA PRIVADA</p><h1>Hola, <span>{name.split(" ")[0]}.</span></h1><small>Aquí puedes consultar tus bonos y el historial de sesiones.</small></div><div className="client-total"><TicketCheck size={28} /><strong>{total}</strong><span>sesiones disponibles</span></div></section>
       {notice && <div className="private-notice"><Check size={18} /> {notice}<button onClick={() => setNotice("")}>×</button></div>}

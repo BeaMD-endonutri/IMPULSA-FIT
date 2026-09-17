@@ -15,6 +15,7 @@ type Review = { id: number; first_name: string; last_name: string; rating: numbe
 type Tab = "overview" | "calendar" | "clients" | "reviews";
 
 const formatDate = (value?: number | null) => value ? new Intl.DateTimeFormat("es-ES", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(value)) : "Sin caducidad";
+const publicWebsiteUrl = "https://beamd-endonutri.github.io/IMPULSA-FIT/";
 
 export function ProfessionalPortal() {
   const [checking, setChecking] = useState(true);
@@ -131,7 +132,7 @@ export function ProfessionalPortal() {
   if (!authenticated) return <PrivateLogin role="professional" onSuccess={(data) => { setAuthenticated(true); setName(data.name); setMustChangePassword(data.mustChangePassword); }} />;
 
   return <main className="private-app">
-    <header className="private-topbar"><Link href="/"><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><div><span><ShieldCheck size={17} /> {name}</span><button onClick={logout}><LogOut size={17} /> Salir</button></div></header>
+    <header className="private-topbar"><Link href={publicWebsiteUrl}><ArrowLeft size={18} /> Web pública</Link><img src="/logo-impulsa-fit-transparent.webp" alt="IMPULSA FIT" /><div><span><ShieldCheck size={17} /> {name}</span><button onClick={logout}><LogOut size={17} /> Salir</button></div></header>
     <div className="private-shell">
       <aside className="private-sidebar"><p>GESTIÓN</p><button className={tab === "overview" ? "active" : ""} onClick={() => { setTab("overview"); setSelected(null); }}><LayoutDashboard size={19} /> Resumen</button><button className={tab === "calendar" ? "active" : ""} onClick={() => { setTab("calendar"); setSelected(null); }}><CalendarClock size={19} /> Agenda</button><button className={tab === "clients" ? "active" : ""} onClick={() => setTab("clients")}><UsersRound size={19} /> Clientes <b>{clients.length}</b></button><button className={tab === "reviews" ? "active" : ""} onClick={() => { setTab("reviews"); setSelected(null); }}><Star size={19} /> Reseñas <b>{reviews.length}</b></button><div className="private-sidebar-note"><TicketCheck size={21} /><strong>Saldo automático</strong><span>Las citas descuentan una sesión al comenzar y conservan todo el historial.</span></div></aside>
       <section className="private-content">
