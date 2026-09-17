@@ -50,6 +50,8 @@ const wiemsproVideos = [
   { video: "https://impulsa-fit-huelva.bea-md.chatgpt.site/video-chaleco.mp4", poster: "video-chaleco-poster.webp", title: "El impulso toma forma", text: "El traje que acompaña cada movimiento" },
 ];
 
+const publicAssetBasePath = process.env.GITHUB_ACTIONS ? "/IMPULSA-FIT" : "";
+
 export default function Home() {
   return (
     <main>
@@ -250,8 +252,8 @@ export default function Home() {
               <div><p className="eyebrow">EL ÚLTIMO IMPULSO ES PARAR</p><h3>Finalizamos con una fase de relajación.</h3><p>Al terminar el entrenamiento bajamos el ritmo y reservamos unos minutos para cerrar la sesión con calma. Incorporamos <strong>cascos con cancelación de ruido</strong> para favorecer un mayor bienestar, aislamiento del entorno y conexión con ese momento de recuperación.</p></div>
             </div>
             <div className="relaxation-gallery" aria-label="Zona de relajación EMS de IMPULSA FIT">
-              <figure className="relaxation-photo relaxation-photo-room"><img src="ems-relax-zona.webp" alt="Zona de relajación EMS con banco de madera, plantas y auriculares" loading="lazy" /></figure>
-              <figure className="relaxation-photo relaxation-photo-detail"><img src="ems-relax-auriculares.webp" alt="Detalle de los auriculares de la zona EMS Relax" loading="lazy" /><figcaption><span>EMS</span> RELAX</figcaption></figure>
+              <figure className="relaxation-photo relaxation-photo-room"><img src={`${publicAssetBasePath}/ems-relax-zona.webp?v=20260917-2`} alt="Zona de relajación EMS con banco de madera, plantas y auriculares" /></figure>
+              <figure className="relaxation-photo relaxation-photo-detail"><img src={`${publicAssetBasePath}/ems-relax-auriculares.webp?v=20260917-2`} alt="Detalle de los auriculares de la zona EMS Relax" /><figcaption><span>EMS</span> RELAX</figcaption></figure>
             </div>
           </aside>
           <a className="instagram-link" href="https://www.instagram.com/impulsafit_huelva/" target="_blank" rel="noreferrer"><AtSign size={18} /> Ver más en Instagram <ArrowRight size={18} /></a>
