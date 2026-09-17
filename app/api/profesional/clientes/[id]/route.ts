@@ -1,4 +1,5 @@
 import { cleanMultiline, cleanText, getD1, privateJson, requireRole } from "@/lib/private-auth";
+import { settleDueAppointments } from "@/lib/appointments";
 
 export const runtime = "edge";
 
@@ -8,6 +9,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   const id = Number((await context.params).id);
   if (!Number.isInteger(id)) return privateJson({ error: "Cliente no válido." }, { status: 400 });
   try {
+    await settleDueAppointments();
     const db = await getD1();
     const client = await db.prepare("SELECT id, first_name, last_name, email, phone, notes, status, created_at FROM clients WHERE id = ?").bind(id).first();
     if (!client) return privateJson({ error: "Cliente no encontrado." }, { status: 404 });
@@ -22,7 +24,12 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
       LEFT JOIN professionals p ON p.id = m.created_by
       WHERE b.client_id = ? ORDER BY m.created_at DESC LIMIT 100
     `).bind(id).all();
-    return privateJson({ client, bonuses: bonuses.results ?? [], movements: movements.results ?? [] });
+    const appointments = await db.prepare(`
+      SELECT a.id, a.starts_at, a.ends_at, a.status, a.notes, a.deducted_at, b.name AS bonus_name
+      FROM appointments a JOIN bonuses b ON b.id = a.bonus_id
+      WHERE a.client_id = ? ORDER BY a.starts_at DESC LIMIT 100
+    `).bind(id).all();
+    return privateJson({ client, bonuses: bonuses.results ?? [], movements: movements.results ?? [], appointments: appointments.results ?? [] });
   } catch (error) {
     console.error("Could not load client", error);
     return privateJson({ error: "No se ha podido cargar la ficha." }, { status: 500 });

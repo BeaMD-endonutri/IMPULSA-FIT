@@ -51,9 +51,28 @@ export const bonusMovements = sqliteTable("bonus_movements", {
   bonusId: integer("bonus_id").notNull().references(() => bonuses.id),
   delta: integer("delta").notNull(),
   reason: text("reason").notNull(),
+  appointmentId: integer("appointment_id").unique(),
   createdBy: integer("created_by").notNull(),
   createdAt: integer("created_at").notNull(),
 }, (table) => [index("idx_bonus_movements_bonus_id").on(table.bonusId)]);
+
+export const appointments = sqliteTable("appointments", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  clientId: integer("client_id").notNull().references(() => clients.id),
+  bonusId: integer("bonus_id").notNull().references(() => bonuses.id),
+  startsAt: integer("starts_at").notNull(),
+  endsAt: integer("ends_at").notNull(),
+  status: text("status").notNull().default("scheduled"),
+  notes: text("notes"),
+  deductedAt: integer("deducted_at"),
+  createdBy: integer("created_by").notNull(),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+}, (table) => [
+  index("idx_appointments_starts_at").on(table.startsAt),
+  index("idx_appointments_client_id").on(table.clientId),
+  index("idx_appointments_status_starts_at").on(table.status, table.startsAt),
+]);
 
 export const privateSessions = sqliteTable("private_sessions", {
   id: integer("id").primaryKey({ autoIncrement: true }),

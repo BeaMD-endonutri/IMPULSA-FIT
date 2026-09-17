@@ -1,4 +1,5 @@
 import { getD1, privateJson, requireRole } from "@/lib/private-auth";
+import { settleDueAppointments } from "@/lib/appointments";
 
 export const runtime = "edge";
 
@@ -6,6 +7,7 @@ export async function GET(request: Request) {
   const session = await requireRole(request, "client");
   if (session instanceof Response) return session;
   try {
+    await settleDueAppointments();
     const db = await getD1();
     const client = await db.prepare("SELECT id, first_name, last_name, email, phone, must_change_password FROM clients WHERE id = ? AND status = 'active'")
       .bind(session.userId).first();
@@ -20,7 +22,12 @@ export async function GET(request: Request) {
       FROM bonus_movements m JOIN bonuses b ON b.id = m.bonus_id
       WHERE b.client_id = ? ORDER BY m.created_at DESC LIMIT 50
     `).bind(session.userId).all();
-    return privateJson({ client, bonuses: bonuses.results ?? [], movements: movements.results ?? [] });
+    const appointments = await db.prepare(`
+      SELECT a.id, a.starts_at, a.ends_at, a.status, a.notes, b.name AS bonus_name
+      FROM appointments a JOIN bonuses b ON b.id = a.bonus_id
+      WHERE a.client_id = ? ORDER BY a.starts_at DESC LIMIT 50
+    `).bind(session.userId).all();
+    return privateJson({ client, bonuses: bonuses.results ?? [], movements: movements.results ?? [], appointments: appointments.results ?? [] });
   } catch (error) {
     console.error("Could not load client area", error);
     return privateJson({ error: "No se ha podido cargar tu área privada." }, { status: 500 });

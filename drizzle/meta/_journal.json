@@ -15,6 +15,20 @@
       "when": 1789317494527,
       "tag": "0001_omniscient_blink",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1789680047528,
+      "tag": "0002_freezing_lockjaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1789680058686,
+      "tag": "0003_vengeful_secret_warriors",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `bonus_movements_appointment_id_unique` ON `bonus_movements` (`appointment_id`);
