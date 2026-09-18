@@ -1,0 +1,16 @@
+name: Procesar citas y bonos
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  procesar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descontar sesiones de citas iniciadas
+        run: curl --fail --silent --show-error --retry 2 --request POST https://impulsa-fit-huelva.bea-md.chatgpt.site/api/tareas/procesar-citas

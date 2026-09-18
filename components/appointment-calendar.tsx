@@ -52,7 +52,7 @@ export function AppointmentCalendar({ clients, onBalancesChanged }: { clients: C
     const startsAt = new Date(`${values.get("date")}T${values.get("time")}:00`).getTime();
     const response = await fetch("/api/profesional/citas", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ clientId: values.get("clientId"), bonusId: values.get("bonusId"), startsAt, duration: values.get("duration"), notes: values.get("notes") }) });
     const body = await response.json() as { error?: string };
-    if (response.ok) { setNotice("Cita agendada. La sesión se descontará automáticamente al comenzar."); setShowForm(false); setClientId(""); setBonuses([]); form.reset(); await load(); }
+    if (response.ok) { setNotice("Cita agendada. La sesión se descontará automáticamente en los minutos posteriores al inicio, aunque cierres la web."); setShowForm(false); setClientId(""); setBonuses([]); form.reset(); await load(); }
     else setNotice(body.error || "No se ha podido agendar la cita.");
     setBusy(false);
   }
